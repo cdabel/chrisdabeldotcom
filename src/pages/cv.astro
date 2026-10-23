@@ -16,10 +16,15 @@ for (const e of entries) byOrg.set(e.data.org, [...(byOrg.get(e.data.org) ?? [])
 ---
 
 <Base title="CV | Chris Dabel" description="Data engineer and architect. What I have built and where.">
-  <h1>CV</h1>
-  <div class="view" role="group" aria-label="Level of detail" hidden>
-    <button type="button" data-view="compact" aria-pressed="true">Compact</button>
-    <button type="button" data-view="detailed" aria-pressed="false">Detailed</button>
+  <div class="head">
+    <div>
+      <h1>CV</h1>
+      <div class="view" role="group" aria-label="Level of detail" hidden>
+        <button type="button" data-view="compact" aria-pressed="true">Compact</button>
+        <button type="button" data-view="detailed" aria-pressed="false">Detailed</button>
+      </div>
+    </div>
+    <img class="headshot" src="/headshot.webp" alt="Chris Dabel" width="400" height="400" loading="eager" decoding="async" />
   </div>
   <p class="lede lede-compact">
     Data engineer and architect, twelve years in. The short version: what was
@@ -161,6 +166,16 @@ for (const e of entries) byOrg.set(e.data.org, [...(byOrg.get(e.data.org) ?? [])
   blockquote { margin: 0; padding-left: 1.1rem; border-left: 2px solid var(--accent); }
   blockquote p { font-size: 1.1rem; font-style: italic; }
   blockquote footer { color: var(--muted); font-size: 0.9rem; }
+  .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; }
+  .headshot {
+    width: 7.5rem;
+    height: 7.5rem;
+    border-radius: 10px;
+    object-fit: cover;
+    flex: none;
+    margin-top: 1rem;
+  }
+  @media (max-width: 480px) { .headshot { width: 5.5rem; height: 5.5rem; margin-top: 1.25rem; } }
   .jump { margin: 0.5rem 0 0; font-size: 0.95rem; }
   .view { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; padding: 2px; margin: 0 0 1.25rem; }
   .lede-detailed { display: none; }

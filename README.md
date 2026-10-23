@@ -26,19 +26,27 @@ portfolio. The site supports an active job search.
     Under development.
   - Substack (enternyxus.com): fiction, poetry, essays under the pen name
     Cael Lawenu. Pen name may be publicly linked to the real name.
-- Infrastructure as code, where used, is Terraform.
+- Hosting: GitHub Pages, built by GitHub Actions (`.github/workflows/deploy.yml`)
+  on every push to `main`. Decided 2026-10-23.
+- Static-site tooling: Astro. Decided 2026-10-23.
+- DNS records live in Route 53 and are managed by Terraform in `terraform/`.
+- Repo is public from the start.
 
 ### Pending
 
-- Hosting: GitHub Pages, S3 + CloudFront, or AWS Amplify Hosting. Cost is not
-  the deciding factor. The question is whether showing AWS infra-as-code in
-  the repo is worth the setup time.
-- Static-site tooling.
 - Visual design.
 - Page inventory.
 - Whether CritPages gets a case-study page.
 - Substack link label: "Cael Lawenu" or "writing". Pick once and use the same
   label on the site, LinkedIn, and the Substack About page.
+
+## Development
+
+```sh
+npm install
+npm run dev      # local server
+npm run build    # static output in dist/
+```
 
 ## Working style
 

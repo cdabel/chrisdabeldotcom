@@ -19,6 +19,12 @@ const { title, description } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <script is:inline>
+      try {
+        const t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch {}
+    </script>
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
   </head>
@@ -27,11 +33,37 @@ const { title, description } = Astro.props;
       <nav>
         <a href="/">Chris Dabel</a>
         <a href="/cv/">CV</a>
+        <button id="theme-toggle" type="button" hidden aria-pressed="false">Dark mode</button>
       </nav>
     </header>
     <main>
       <slot />
     </main>
+    <script>
+      const root = document.documentElement;
+      const button = document.getElementById('theme-toggle') as HTMLButtonElement;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+      const current = (): 'light' | 'dark' =>
+        root.dataset.theme === 'dark' || (!root.dataset.theme && media.matches) ? 'dark' : 'light';
+
+      const label = () => {
+        const dark = current() === 'dark';
+        button.textContent = dark ? 'Light mode' : 'Dark mode';
+        button.setAttribute('aria-pressed', String(dark));
+      };
+
+      button.addEventListener('click', () => {
+        const next = current() === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try { localStorage.setItem('theme', next); } catch {}
+        label();
+      });
+
+      media.addEventListener('change', label);
+      label();
+      button.hidden = false;
+    </script>
   </body>
 </html>
 
@@ -45,16 +77,25 @@ const { title, description } = Astro.props;
     --display: 'Young Serif', Georgia, serif;
     --text: 'IBM Plex Sans', system-ui, sans-serif;
     --measure: 40rem;
-    color-scheme: light dark;
+    color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme='light']) {
       --bg: #15191f;
       --fg: #e6e8eb;
       --muted: #98a1ab;
       --rule: #2a3038;
       --accent: #7fcbd1;
+      color-scheme: dark;
     }
+  }
+  :root[data-theme='dark'] {
+    --bg: #15191f;
+    --fg: #e6e8eb;
+    --muted: #98a1ab;
+    --rule: #2a3038;
+    --accent: #7fcbd1;
+    color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
@@ -83,6 +124,16 @@ const { title, description } = Astro.props;
   }
   header.site nav a { color: var(--muted); text-decoration: none; }
   header.site nav a:hover { color: var(--fg); }
+  #theme-toggle {
+    margin-left: auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  #theme-toggle:hover { color: var(--fg); }
   main { padding: 3.5rem 1.25rem 5rem; }
 
   h1 {

@@ -2,7 +2,7 @@
 title: Warehouse spend cut by nearly three quarters
 org: Finally
 period: 2025 to 2026
-order: 6
+order: 7
 stats:
   - value: "$50K"
     label: saved in 2026 to date

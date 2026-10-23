@@ -2,7 +2,7 @@
 title: A corporate card program, modeled end to end
 org: Finally
 period: 2025 to 2026
-order: 4
+order: 5
 stats:
   - value: "1.4M"
     label: transaction records in the lifecycle model

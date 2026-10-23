@@ -53,6 +53,12 @@ portfolio. The site supports an active job search.
   numbers on the CV, IBM Plex Sans for everything else, both self-hosted via
   fontsource. Cool off-white and ink palette with a petrol teal for links,
   mirrored in dark mode. Single left-aligned column, about 40rem.
+- CV figures for Finally come from the two September 2026 resumes and the
+  Data Engineering Dossier compiled 2 Sep 2026 (local, not in the repo).
+  Caveats it carries: the 72% figure overlaps an April 2026 restructuring, so
+  the 86% query-volume and DPD numbers are the fully attributable ones; the
+  12.6M corpus is the model's target size; the RAG serving service was built
+  by colleagues, Chris authored the retrieval architecture and corpus.
 - Page inventory: `/` (thesis and Elsewhere block), `/cv/` (accomplishments
   and timeline), `/critpages/` (case study, built from critpages.com and the
   resume line; no repo access yet).

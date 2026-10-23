@@ -6,8 +6,8 @@ order: 1
 stats:
   - value: "12.6M"
     label: labeled training rows
-  - value: "5"
-    label: candidate models scored
+  - value: "381K"
+    label: predictions scored across 5 models
 ---
 
-The data layer under an AI-led bookkeeping product: the labeled corpus and embeddings behind a RAG classifier, an SCD-2 shadow-run harness scoring candidate models against each other, and marts tracking straight-through automation, decision certainty, and per-classification inference cost. Per-call Bedrock cost and MCP tool-call analytics, and the retrieval architecture for a customer-facing assistant.
+The measurement layer that decides whether an LLM classifier may post journal entries into a customer's books without a human: a labeled corpus with dual-watermark incremental selection so user edits never leave labels stale, an SCD-2 shadow-run harness, and marts that encode the graduation bars, precision at confidence 0.9 and above, week-over-week drift, a high-confidence volume floor, and a model-collapse canary. One macro defines the eval denominator everywhere, so offline and online scoring cannot drift apart. Authored the retrieval architecture and corpus design for the customer-facing RAG assistant, and built the per-call Bedrock cost and MCP tool-call analytics around it.

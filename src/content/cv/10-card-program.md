@@ -4,8 +4,10 @@ org: Finally
 period: 2025 to 2026
 order: 5
 stats:
+  - value: "$448.8M"
+    label: settled card spend modeled
   - value: "1.4M"
-    label: transaction records in the lifecycle model
+    label: transaction lifecycle records
 ---
 
-Spend and interchange per company and per cohort per month, risk, limits, rewards and loss reporting, and a usage suite with card-program and merchant-category dimensions. Dashboards for exec, finance, and risk, plus the reporting a sponsor bank and compliance require.
+Spend and interchange per company and per cohort per month, risk, limits, rewards and loss reporting, and a usage suite with card-program and merchant-category dimensions and business-day weighting from a federal-holiday seed so month-over-month spend is not distorted by calendar shape. Dashboards for exec, finance, and risk, plus the reporting a sponsor bank and compliance require.

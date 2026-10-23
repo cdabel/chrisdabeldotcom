@@ -2,7 +2,7 @@
 title: The pipeline behind a recommendation model
 org: Jane.com
 period: 2020 to 2022
-order: 10
+order: 11
 stats:
   - value: "1B"
     label: clickstream rows per training build

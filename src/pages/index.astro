@@ -17,7 +17,10 @@ import Base from '../layouts/Base.astro';
     production analytics and ML. Most recently the founding data engineer at a
     fintech, where I owned the whole path solo: ingestion, a Snowflake medallion
     architecture, orchestration in Airflow on AWS, and the governance that let
-    an LLM product see only what each tenant was entitled to. The same platform
+    an LLM product see only what each tenant was entitled to. Along the way I
+    took the platform off two SaaS vendors, dbt Cloud to Airflow on MWAA
+    provisioned in Terraform and Fivetran to self-hosted Airbyte, without a
+    data outage. The same platform
     fed the model: a labeled corpus in the millions of rows, a harness for
     scoring candidate models against each other, and per-LLM-call cost
     analytics so nobody had to guess what the AI was spending.

@@ -54,11 +54,15 @@ portfolio. The site supports an active job search.
   fontsource. Cool off-white and ink palette with a petrol teal for links,
   mirrored in dark mode. Single left-aligned column, about 40rem.
 - Page inventory: `/` (thesis and Elsewhere block), `/cv/` (accomplishments
-  and timeline). Case-study pages are still undecided.
+  and timeline), `/critpages/` (case study, built from critpages.com and the
+  resume line; no repo access yet).
+- Raising & Connecting (WordPress) is listed in the Elsewhere block only.
 
 ### Pending
 
-- Whether CritPages or the Finally platform get case-study pages.
+- Whether the Finally platform gets a case-study page.
+- CritPages case study: the "why I built it" is absent until Chris supplies
+  it, and the Decisions section would benefit from repo access.
 - Borrowing-base entry on the CV. The ~$500K figure is Chris's recollection,
   not a record; it may have been higher. Still to confirm if possible: whether
   the companies were absent from the tape or present with disqualifying

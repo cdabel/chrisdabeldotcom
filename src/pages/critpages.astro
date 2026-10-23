@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="CritPages | Chris Dabel"
+  description="A critique app for unpublished writing, built solo on Expo and Supabase. What it is, what I decided, and why the access model lives in the database."
+>
+  <h1>CritPages</h1>
+  <p class="lede">
+    The critique app for unpublished writing. Founder and sole engineer, in
+    beta since mid 2026.
+  </p>
+
+  <section aria-labelledby="what">
+    <h2 id="what">What it is</h2>
+    <p>
+      Writers share pages with a critique group, a beta-reader round, or a
+      single partner. Readers mark them up on their phones: a tag, a strike, a
+      heart, or a comment attached to a word, a sentence, or a paragraph, each
+      in about two taps. Each reader sees only their own marks. The writer sees
+      all of them together.
+    </p>
+    <p>
+      Groups can read live, everyone following along and marking on their own
+      device while one person reads aloud. Pages are drawn rather than
+      rendered as selectable text, so a manuscript cannot be copied out. Access
+      is by invitation, and a writer can remove a reader or end a round.
+    </p>
+    <p>
+      Native apps for iPhone and Android, with the web handling invitations,
+      accounts, finding beta readers, and scheduling sessions. One-on-one use
+      is free. Groups and beta rounds are paid, and free during the beta.
+    </p>
+  </section>
+
+  <section aria-labelledby="decisions">
+    <h2 id="decisions">Decisions</h2>
+    <dl class="decisions">
+      <div>
+        <dt>Access control lives in the database</dt>
+        <dd>
+          Who can see a page is decided by Postgres row-level security
+          policies in Supabase, not by application code. An author's
+          unpublished work is visible only to their critique group, and that
+          holds for every client and every query path. It is the same
+          discipline as the row access policies I built for a fintech's
+          multi-tenant warehouse, applied to a product.
+        </dd>
+      </div>
+      <div>
+        <dt>One codebase, both phones</dt>
+        <dd>
+          React Native with Expo, shipping to iOS and Android from a single
+          codebase. For one engineer, that is the difference between a product
+          and a prototype.
+        </dd>
+      </div>
+      <div>
+        <dt>The web does what phones are bad at</dt>
+        <dd>
+          Invitations, accounts, finding beta readers, and scheduling live
+          sessions run on a Next.js site on Vercel. The reading and marking
+          stay native, where two taps on a sentence feel right.
+        </dd>
+      </div>
+      <div>
+        <dt>Feedback is independent</dt>
+        <dd>
+          Readers never see each other's marks while they read, so nobody
+          anchors on the first opinion. The writer gets the full set, and the
+          disagreements are the useful part.
+        </dd>
+      </div>
+      <div>
+        <dt>The page looks like a page</dt>
+        <dd>
+          No spellcheck underlines, no track-changes clutter. The reading
+          surface is a clean copy of the manuscript, and the marks sit on top
+          of it.
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section aria-labelledby="status">
+    <h2 id="status">Status</h2>
+    <p>
+      Pre-launch beta. Early access is open by email to a limited number of
+      groups, beta rounds, and pairs at
+      <a href="https://critpages.com">critpages.com</a>. Product notes go out
+      on <a href="https://critpages.substack.com">the CritPages Substack</a>.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .lede { font-size: 1.3rem; line-height: 1.4; margin-bottom: 1.75rem; }
+  .decisions { margin: 0; }
+  .decisions div { padding: 1rem 0; border-top: 1px solid var(--rule); }
+  .decisions dt { font-weight: 600; margin-bottom: 0.25rem; }
+  .decisions dd { margin: 0; }
+</style>

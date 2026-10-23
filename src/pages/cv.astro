@@ -7,6 +7,12 @@ const entries = (await getCollection('cv')).sort((a, b) => a.data.order - b.data
 const rendered = await Promise.all(
   entries.map(async (entry) => ({ entry, Content: (await render(entry)).Content })),
 );
+
+// Accomplishments per role, in CV order. Shown on the timeline as links
+// back to the entries above; roles with many show the first few.
+const SHOWN = 3;
+const byOrg = new Map<string, typeof entries>();
+for (const e of entries) byOrg.set(e.data.org, [...(byOrg.get(e.data.org) ?? []), e]);
 ---
 
 <Base title="CV | Chris Dabel" description="Data engineer and architect. What I have built and where.">
@@ -15,13 +21,14 @@ const rendered = await Promise.all(
     Data engineer and architect, twelve years in. The short version is below:
     what was built, and the one or two numbers that matter.
   </p>
+  <p class="jump"><a href="#timeline">Jump to the timeline</a></p>
 
   <section aria-labelledby="work">
     <h2 id="work">What I have built</h2>
     <ol class="dragons">
       {rendered.map(({ entry, Content }) => (
         <li>
-          <article>
+          <article id={entry.id}>
             <header>
               <h3>{entry.data.title}</h3>
               <p class="meta">{entry.data.org}, {entry.data.period}</p>
@@ -55,17 +62,31 @@ const rendered = await Promise.all(
     </blockquote>
   </section>
 
-  <section aria-labelledby="roles">
-    <h2 id="roles">Where</h2>
-    <ul class="roles">
-      {roles.map((r) => (
-        <li>
-          <span class="org">{r.org}</span>
-          <span class="title">{r.title}</span>
-          <span class="period">{r.period}</span>
-        </li>
-      ))}
-    </ul>
+  <section aria-labelledby="timeline">
+    <h2 id="timeline">Timeline</h2>
+    <ol class="timeline">
+      {roles.map((r) => {
+        const own = byOrg.get(r.org) ?? [];
+        return (
+          <li>
+            <p class="when">{r.period}</p>
+            <p class="who"><span class="org">{r.org}</span><span class="title">{r.title}</span></p>
+            {own.length > 0 ? (
+              <ul class="slain">
+                {own.slice(0, SHOWN).map((e) => (
+                  <li><a href={`#${e.id}`}>{e.data.title}</a></li>
+                ))}
+                {own.length > SHOWN && (
+                  <li class="more"><a href="#work">and {own.length - SHOWN} more above</a></li>
+                )}
+              </ul>
+            ) : (
+              r.note && <p class="note">{r.note}</p>
+            )}
+          </li>
+        );
+      })}
+    </ol>
   </section>
 
   <section aria-labelledby="edu">
@@ -102,6 +123,32 @@ const rendered = await Promise.all(
   blockquote { margin: 0; padding-left: 1.1rem; border-left: 2px solid var(--accent); }
   blockquote p { font-size: 1.1rem; font-style: italic; }
   blockquote footer { color: var(--muted); font-size: 0.9rem; }
+  .jump { margin: 0.75rem 0 0; font-size: 0.95rem; }
+  article { scroll-margin-top: 1.5rem; }
+  .timeline { list-style: none; padding: 0 0 0 1.25rem; margin: 0; border-left: 2px solid var(--rule); }
+  .timeline > li { position: relative; padding: 0 0 1.75rem; }
+  .timeline > li::before {
+    content: '';
+    position: absolute;
+    left: calc(-1.25rem - 6px);
+    top: 0.55rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline > li:last-child { padding-bottom: 0.25rem; }
+  .when { color: var(--muted); font-size: 0.9rem; margin: 0 0 0.15rem; }
+  .who { margin: 0 0 0.4rem; }
+  .who .org { font-weight: 600; }
+  .who .title { color: var(--muted); }
+  .who .title::before { content: ', '; }
+  .slain { list-style: none; padding: 0; margin: 0; }
+  .slain li { margin: 0.15rem 0; }
+  .slain a { text-decoration: none; }
+  .slain a:hover { text-decoration: underline; }
+  .slain .more a { color: var(--muted); font-size: 0.9rem; }
+  .note { color: var(--muted); margin: 0; max-width: 36rem; }
   .roles { list-style: none; padding: 0; margin: 0; }
   .roles li {
     display: grid;

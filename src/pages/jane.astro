@@ -1,0 +1,106 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Jane.com | Chris Dabel"
+  description="The Airflow and Spark pipeline that built training data for a boutique marketplace's recommendation model from a billion clickstream rows, and the data-quality DAGs that guarded it."
+>
+  <h1>The pipeline behind a recommendation model</h1>
+  <p class="lede">
+    Senior Data Engineer II at Jane.com, a boutique e-commerce marketplace,
+    February 2020 to January 2022. Sole data engineer for four months after
+    turnover.
+  </p>
+
+  <section aria-labelledby="problem">
+    <h2 id="problem">The problem</h2>
+    <p>
+      The marketplace's product recommendations ran on a model the data
+      science team retrained on shopper behavior. Training it meant turning
+      raw clickstream into a feature set at a scale the existing SQL Server
+      Integration Services jobs could not reach, on a cadence that let the
+      team iterate, with predictions landing somewhere analysts could read
+      them the same hour.
+    </p>
+  </section>
+
+  <section aria-labelledby="pipeline">
+    <h2 id="pipeline">The pipeline</h2>
+    <dl class="steps">
+      <div>
+        <dt>Training data on EMR</dt>
+        <dd>
+          Airflow DAGs ran PySpark and SparkSQL on AWS EMR to build the
+          training set from a billion clickstream rows over a rolling
+          ten-month lookback. The window moved with each run, so the model
+          always trained on the most recent ten months of behavior and never
+          on a frozen snapshot.
+        </dd>
+      </div>
+      <div>
+        <dt>Post-processing through SageMaker</dt>
+        <dd>
+          Model output came back through SageMaker for post-processing in
+          the same DAG family, so training and scoring shared one
+          orchestration path and one set of alerts.
+        </dd>
+      </div>
+      <div>
+        <dt>Predictions to Redshift, hourly</dt>
+        <dd>
+          A Python DAG wrote the model's prediction outputs to Redshift
+          tables every hour, which gave analysts current data for trend
+          analysis without asking the data science team for an export.
+        </dd>
+      </div>
+      <div>
+        <dt>Data-quality DAGs in front of the model</dt>
+        <dd>
+          Separate DAGs scanned for anomalies in the inputs, logged what they
+          found, and alerted, so a bad day of clickstream was caught before
+          it trained the model that chose what shoppers saw. The resume line
+          says it plainly: this improved the recommendations.
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section aria-labelledby="around">
+    <h2 id="around">Around it</h2>
+    <ul>
+      <li>
+        Two critical SSIS workbooks migrated into Python pipelines in
+        Airflow, and about a dozen more DAGs built alongside them.
+      </li>
+      <li>
+        Airflow subject-matter expert for the team: runbooks, data
+        definitions, and training that raised adoption and shortened
+        onboarding. Mentored two junior engineers.
+      </li>
+      <li>
+        Advised the incoming manager on modernizing the platform, including
+        AWS integration strategy and adopting dbt, which set the roadmap
+        after the turnover.
+      </li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="stack">
+    <h2 id="stack">Stack</h2>
+    <p>
+      Apache Airflow, PySpark and SparkSQL on AWS EMR, SageMaker, Redshift,
+      Python, and the SSIS estate being retired.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .lede { font-size: 1.3rem; line-height: 1.4; margin-bottom: 1.75rem; }
+  .steps { margin: 0; }
+  .steps div { padding: 1.1rem 0; border-top: 1px solid var(--rule); }
+  .steps dt { font-weight: 600; margin-bottom: 0.3rem; }
+  .steps dd { margin: 0; }
+  ul { padding-left: 1.2rem; }
+  li { margin-bottom: 0.5rem; }
+</style>

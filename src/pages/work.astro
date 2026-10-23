@@ -10,6 +10,13 @@ const studies = [
       'The warehouse, the orchestration under it, the lender reporting on top, and the evaluation layer for the LLM systems. What was inherited, the build in order, ten decisions, and what it cost to run.',
   },
   {
+    href: '/jane/',
+    title: 'The pipeline behind a recommendation model',
+    org: 'Jane.com, 2020 to 2022',
+    blurb:
+      'Airflow and Spark on EMR built training data from a billion clickstream rows over a rolling ten-month window, SageMaker post-processed the output, and data-quality DAGs stood in front of the model.',
+  },
+  {
     href: '/critpages/',
     title: 'CritPages',
     org: 'Founder and sole engineer, 2026',
@@ -21,10 +28,10 @@ const studies = [
 
 <Base
   title="Work | Chris Dabel"
-  description="Two case studies: a fintech data platform built solo, and a critique app for writers built with Claude Code."
+  description="Three case studies: a fintech data platform built solo, a recommendation-model pipeline on Spark and Airflow, and a critique app for writers built with Claude Code."
 >
   <h1>Work</h1>
-  <p class="lede">Two case studies. Each one says what was decided and why, not only what was built.</p>
+  <p class="lede">Three case studies. Each one says what was decided and why, not only what was built.</p>
 
   <ul class="studies">
     {studies.map((s) => (

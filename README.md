@@ -60,7 +60,8 @@ portfolio. The site supports an active job search.
   12.6M corpus is the model's target size; the RAG serving service was built
   by colleagues, Chris authored the retrieval architecture and corpus.
 - Page inventory: `/` (thesis and Elsewhere block), `/cv/` (accomplishments
-  and timeline), `/work/` (index of case studies, nav label "Work"), `/finally/` (platform case study from the dossier and
+  and timeline), `/work/` (index of case studies, nav label "Work"), `/jane/` (case study
+  from the resumes, LinkedIn, and Chris's billion-row figure), `/finally/` (platform case study from the dossier and
   resumes), `/critpages/` (case study from the private repos' history).
 - Raising & Connecting (WordPress) is listed in the Elsewhere block only.
 
@@ -92,6 +93,11 @@ The account has no Organization and no IAM Identity Center instance.
 5. Remove any root access key from the laptop; root stays console-only.
 
 Later, if ever:
+
+- Jane.com case study is thin by design. It would be stronger with: what
+  the anomaly DAGs actually caught, why ten months, the EMR cluster shape
+  and run time, what the post-processing did, and what the modernization
+  advice was.
 
 - Analytics. Nothing is collected today; a privacy-respecting option with
   no banner, or none.

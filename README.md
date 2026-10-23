@@ -49,12 +49,15 @@ portfolio. The site supports an active job search.
 - The Finally recommendation is quoted on the CV page, trimmed to one
   contiguous sentence and attributed by name as it is on LinkedIn. Give the
   author a heads-up.
+- Visual design, decided 2026-10-23: Young Serif for H1s and for the stat
+  numbers on the CV, IBM Plex Sans for everything else, both self-hosted via
+  fontsource. Cool off-white and ink palette with a petrol teal for links,
+  mirrored in dark mode. Single left-aligned column, about 40rem.
 - Page inventory: `/` (thesis and Elsewhere block), `/cv/` (accomplishments
   and timeline). Case-study pages are still undecided.
 
 ### Pending
 
-- Visual design.
 - Whether CritPages or the Finally platform get case-study pages.
 - Borrowing-base entry on the CV. The ~$500K figure is Chris's recollection,
   not a record; it may have been higher. Still to confirm if possible: whether

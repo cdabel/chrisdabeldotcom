@@ -24,7 +24,7 @@ const rendered = await Promise.all(
           <article>
             <header>
               <h3>{entry.data.title}</h3>
-              <p class="meta">{entry.data.org} · {entry.data.period}</p>
+              <p class="meta">{entry.data.org}, {entry.data.period}</p>
             </header>
             {entry.data.stats.length > 0 && (
               <dl class="stats">
@@ -83,25 +83,31 @@ const rendered = await Promise.all(
 </Base>
 
 <style>
-  .lede { color: var(--muted); }
+  .lede { font-size: 1.2rem; color: var(--muted); margin-bottom: 0; }
   .dragons { list-style: none; padding: 0; margin: 0; }
-  .dragons > li { padding: 1.5rem 0; border-top: 1px solid var(--rule); }
-  article h3 { font-size: 1.1rem; margin: 0; }
-  .meta { color: var(--muted); font-size: 0.9rem; margin: 0.25rem 0 0.75rem; }
-  .stats { display: flex; flex-wrap: wrap; gap: 2rem; margin: 0 0 1rem; }
+  .dragons > li { padding: 1.75rem 0; border-top: 1px solid var(--rule); }
+  .dragons > li:first-child { border-top: 0; padding-top: 0.5rem; }
+  .meta { color: var(--muted); font-size: 0.9rem; margin: 0.2rem 0 0.9rem; }
+  .stats { display: flex; flex-wrap: wrap; gap: 0.5rem 2.5rem; margin: 0 0 1rem; }
   .stats div { display: flex; flex-direction: column-reverse; }
   .stats dt { color: var(--muted); font-size: 0.85rem; }
-  .stats dd { margin: 0; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.01em; }
+  .stats dd {
+    margin: 0;
+    font-family: var(--display);
+    font-size: 1.9rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
   article :global(p:last-child) { margin-bottom: 0; }
-  blockquote { margin: 0; padding-left: 1rem; border-left: 2px solid var(--rule); }
-  blockquote p { font-size: 1.05rem; }
+  blockquote { margin: 0; padding-left: 1.1rem; border-left: 2px solid var(--accent); }
+  blockquote p { font-size: 1.1rem; font-style: italic; }
   blockquote footer { color: var(--muted); font-size: 0.9rem; }
   .roles { list-style: none; padding: 0; margin: 0; }
   .roles li {
     display: grid;
     grid-template-columns: 1fr;
     gap: 0 1rem;
-    padding: 0.6rem 0;
+    padding: 0.65rem 0;
     border-top: 1px solid var(--rule);
   }
   @media (min-width: 600px) {

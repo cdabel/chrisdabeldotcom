@@ -1,7 +1,7 @@
 export type Role = { org: string; title: string; period: string };
 
 export const roles: Role[] = [
-  { org: 'Finally', title: 'Founding Data Engineer and Architect', period: 'Jul 2025 to Sep 2026' },
+  { org: 'Finally', title: 'Founding Senior Data Engineer', period: 'Jul 2025 to Sep 2026' },
   { org: 'The Lifetime Value Co.', title: 'Senior ETL Engineer II', period: 'Nov 2022 to Mar 2025' },
   { org: 'Rent the Runway', title: 'Data Engineer III', period: 'Jan 2022 to Sep 2022' },
   { org: 'Jane.com', title: 'Senior Data Engineer II', period: 'Feb 2020 to Jan 2022' },

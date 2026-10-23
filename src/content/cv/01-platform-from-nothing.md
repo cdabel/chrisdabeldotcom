@@ -10,4 +10,4 @@ stats:
     label: tests, up from zero
 ---
 
-Sole data engineer for a three-product fintech. Inherited raw source replication with no tests and no analytics layer, and built everything above it: the analytics layer, the orchestration and ELT beneath it, the governance model, and the external reporting.
+Sole data engineer for a three-product fintech. Inherited raw source replication with no tests and no analytics layer, including a schema-per-tenant source flattened across roughly 1,600 customer schemas of about 120 tables each, and built everything above it: the analytics layer, the orchestration and ELT beneath it, the governance model, and the external reporting.

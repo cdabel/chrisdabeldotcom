@@ -3,6 +3,8 @@ title: The data behind the LLM
 org: Finally
 period: "2026"
 order: 1
+summary: >-
+  The corpus, shadow-run harness, and graduation marts that decide whether an LLM classifier may post journal entries without a human.
 stats:
   - value: "12.6M"
     label: labeled training rows

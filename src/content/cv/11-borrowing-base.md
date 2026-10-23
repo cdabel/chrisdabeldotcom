@@ -3,6 +3,8 @@ title: Borrowing capacity recovered from the loan tapes
 org: Finally
 period: "2026"
 order: 3
+summary: >-
+  Traced the data-quality defects dropping companies from the lender's loan tape, fixed them upstream, and the borrowing base rose by roughly half a million dollars.
 stats:
   - value: "~$500K"
     label: borrowing base recovered

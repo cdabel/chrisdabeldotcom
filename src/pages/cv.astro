@@ -21,7 +21,20 @@ for (const e of entries) byOrg.set(e.data.org, [...(byOrg.get(e.data.org) ?? [])
     Data engineer and architect, twelve years in. The short version is below:
     what was built, and the one or two numbers that matter.
   </p>
-  <p class="jump"><a href="#timeline">Jump to the timeline</a></p>
+  <div class="controls">
+    <p class="jump"><a href="#timeline">Jump to the timeline</a></p>
+    <div class="view" role="group" aria-label="Level of detail" hidden>
+      <button type="button" data-view="compact" aria-pressed="true">Compact</button>
+      <button type="button" data-view="detailed" aria-pressed="false">Detailed</button>
+    </div>
+  </div>
+  <script is:inline>
+    // Runs before the list below is parsed, so a saved choice never flashes.
+    try {
+      if (localStorage.getItem('cv-view') === 'detailed')
+        document.documentElement.dataset.cv = 'detailed';
+    } catch {}
+  </script>
 
   <section aria-labelledby="work">
     <h2 id="work">What I have built</h2>
@@ -43,7 +56,8 @@ for (const e of entries) byOrg.set(e.data.org, [...(byOrg.get(e.data.org) ?? [])
                 ))}
               </dl>
             )}
-            <Content />
+            <p class="summary">{entry.data.summary}</p>
+            <div class="detail"><Content /></div>
           </article>
         </li>
       ))}
@@ -101,6 +115,28 @@ for (const e of entries) byOrg.set(e.data.org, [...(byOrg.get(e.data.org) ?? [])
       ))}
     </ul>
   </section>
+  <script>
+    const root = document.documentElement;
+    const group = document.querySelector<HTMLElement>('.view')!;
+    const buttons = group.querySelectorAll<HTMLButtonElement>('button[data-view]');
+    const paint = () => {
+      const detailed = root.dataset.cv === 'detailed';
+      buttons.forEach((b) =>
+        b.setAttribute('aria-pressed', String((b.dataset.view === 'detailed') === detailed)),
+      );
+    };
+    buttons.forEach((b) =>
+      b.addEventListener('click', () => {
+        const v = b.dataset.view!;
+        if (v === 'detailed') root.dataset.cv = 'detailed';
+        else delete root.dataset.cv;
+        try { localStorage.setItem('cv-view', v); } catch {}
+        paint();
+      }),
+    );
+    paint();
+    group.hidden = false;
+  </script>
 </Base>
 
 <style>
@@ -123,7 +159,31 @@ for (const e of entries) byOrg.set(e.data.org, [...(byOrg.get(e.data.org) ?? [])
   blockquote { margin: 0; padding-left: 1.1rem; border-left: 2px solid var(--accent); }
   blockquote p { font-size: 1.1rem; font-style: italic; }
   blockquote footer { color: var(--muted); font-size: 0.9rem; }
-  .jump { margin: 0.75rem 0 0; font-size: 0.95rem; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    margin-top: 0.75rem;
+  }
+  .jump { margin: 0; font-size: 0.95rem; }
+  .view { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; padding: 2px; }
+  .view button {
+    font: inherit;
+    font-size: 0.9rem;
+    color: var(--muted);
+    background: none;
+    border: 0;
+    border-radius: 999px;
+    padding: 0.2rem 0.8rem;
+    cursor: pointer;
+  }
+  .view button[aria-pressed='true'] { background: var(--fg); color: var(--bg); }
+  .summary { margin: 0; }
+  .detail { display: none; }
+  :global(html[data-cv='detailed']) .summary { display: none; }
+  :global(html[data-cv='detailed']) .detail { display: block; }
   article { scroll-margin-top: 1.5rem; }
   .timeline { list-style: none; padding: 0 0 0 1.25rem; margin: 0; border-left: 2px solid var(--rule); }
   .timeline > li { position: relative; padding: 0 0 1.75rem; }

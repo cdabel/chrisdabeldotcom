@@ -3,6 +3,8 @@ title: Warehouse spend cut by nearly three quarters
 org: Finally
 period: 2025 to 2026
 order: 8
+summary: >-
+  Ninety-two tenant-flattening models were rebuilt nightly when nine were read. Disabling the rest cut query volume 86%, and deleting work beat optimizing it.
 stats:
   - value: "$50K"
     label: saved in 2026 to date

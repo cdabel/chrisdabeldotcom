@@ -3,6 +3,8 @@ title: The pipeline behind a recommendation model
 org: Jane.com
 period: 2020 to 2022
 order: 11
+summary: >-
+  Airflow and PySpark on EMR built the recommendation model's training data from a billion clickstream rows and post-processed its output through SageMaker.
 stats:
   - value: "1B"
     label: clickstream rows per training build

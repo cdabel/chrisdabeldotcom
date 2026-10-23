@@ -3,6 +3,8 @@ title: Two vendor exits, no data outage
 org: Finally
 period: "2026"
 order: 9
+summary: >-
+  dbt Cloud to MWAA in Terraform with Cosmos and Dataset scheduling, Fivetran to self-hosted Airbyte across four sources, eight VPC peerings adopted into state.
 stats:
   - value: "295"
     label: tables moved off Fivetran

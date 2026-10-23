@@ -3,6 +3,8 @@ title: A data platform where there was none
 org: Finally
 period: 2025 to 2026
 order: 4
+summary: >-
+  Inherited 281 untested replication models and built the entire analytics layer, orchestration, governance, and external reporting above them, solo.
 stats:
   - value: "438"
     label: dbt models

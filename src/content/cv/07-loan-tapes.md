@@ -3,6 +3,8 @@ title: Regulated reporting that could not be late
 org: Finally
 period: 2025 to 2026
 order: 10
+summary: >-
+  Daily and monthly GPG-encrypted loan tapes to a credit facility and a 119-metric sponsor-bank and Visa pack, with runbooks so the cycle is reproducible.
 stats:
   - value: "282K"
     label: rows per daily loan tape

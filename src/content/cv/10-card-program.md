@@ -3,6 +3,8 @@ title: A corporate card program, modeled end to end
 org: Finally
 period: 2025 to 2026
 order: 5
+summary: >-
+  Spend, interchange, risk, limits, rewards, and loss modeled per company and cohort, with dashboards for exec, finance, and risk.
 stats:
   - value: "$448.8M"
     label: settled card spend modeled

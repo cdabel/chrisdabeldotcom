@@ -3,6 +3,8 @@ title: A six-hour credit-risk model, now thirteen seconds
 org: Finally
 period: "2026"
 order: 7
+summary: >-
+  Five chained recursive CTEs became window functions over a date spine, then the hard part: point-in-time grace periods, cure detection, and a charge-off rule with recovery netting.
 stats:
   - value: "6 h to 13 s"
     label: rebuild time

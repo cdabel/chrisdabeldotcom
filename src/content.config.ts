@@ -10,6 +10,8 @@ const cv = defineCollection({
     org: z.string(),
     period: z.string(),
     order: z.number(),
+    // One sentence for the compact view. The body is the detailed view.
+    summary: z.string(),
     stats: z
       .array(z.object({ value: z.string(), label: z.string() }))
       .max(2)

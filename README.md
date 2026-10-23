@@ -56,6 +56,10 @@ portfolio. The site supports an active job search.
 
 - Visual design.
 - Whether CritPages or the Finally platform get case-study pages.
+- Borrowing-base entry on the CV, still to confirm: the exact figure, whether
+  the companies were absent from the tape or present with disqualifying
+  fields, the root-cause category, where in the pipeline the fix landed, and
+  how many companies were affected.
 
 ## Development
 

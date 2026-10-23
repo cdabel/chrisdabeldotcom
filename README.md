@@ -30,6 +30,8 @@ portfolio. The site supports an active job search.
   on every push to `main`. Decided 2026-10-23.
 - Static-site tooling: Astro. Decided 2026-10-23.
 - DNS records live in Route 53 and are managed by Terraform in `terraform/`.
+  DNS stays per-site: each site repo owns its own hosted zone, as critpages.com
+  and raisingandconnecting.com already do. Decided 2026-10-23.
 - Repo is public from the start.
 
 ### Pending

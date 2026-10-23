@@ -6,7 +6,10 @@ import Base from '../layouts/Base.astro';
   title="Chris Dabel"
   description="Data engineer and architect. I build the data layer AI runs on, and I build with AI while I do it."
 >
-  <h1>Chris Dabel</h1>
+  <div class="head">
+    <img class="headshot" src="/headshot.webp" alt="Chris Dabel" width="600" height="600" loading="eager" decoding="async" />
+    <h1>Chris Dabel</h1>
+  </div>
   <p class="lede">
     Data engineer and architect. I build the data layer AI runs on, and I
     build with AI while I do it.
@@ -112,6 +115,10 @@ import Base from '../layouts/Base.astro';
 </Base>
 
 <style>
+  .head { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.25rem; }
+  .head h1 { margin: 0; }
+  .headshot { width: 8.5rem; height: 8.5rem; border-radius: 12px; flex: none; }
+  @media (max-width: 480px) { .headshot { width: 6rem; height: 6rem; border-radius: 10px; } .head { gap: 1rem; } }
   .lede { font-size: 1.3rem; line-height: 1.4; margin-bottom: 1.75rem; }
   .elsewhere { list-style: none; padding: 0; margin: 0; }
   .elsewhere li {

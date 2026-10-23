@@ -1,0 +1,97 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { roles, education } from '../data/roles';
+
+const entries = (await getCollection('cv')).sort((a, b) => a.data.order - b.data.order);
+const rendered = await Promise.all(
+  entries.map(async (entry) => ({ entry, Content: (await render(entry)).Content })),
+);
+---
+
+<Base title="CV | Chris Dabel" description="Data engineer and architect. What I have built and where.">
+  <h1>CV</h1>
+  <p class="lede">
+    Data engineer and architect, twelve years in. The short version is below:
+    what was built, and the one or two numbers that matter.
+  </p>
+
+  <section aria-labelledby="work">
+    <h2 id="work">What I have built</h2>
+    <ol class="dragons">
+      {rendered.map(({ entry, Content }) => (
+        <li>
+          <article>
+            <header>
+              <h3>{entry.data.title}</h3>
+              <p class="meta">{entry.data.org} · {entry.data.period}</p>
+            </header>
+            {entry.data.stats.length > 0 && (
+              <dl class="stats">
+                {entry.data.stats.map((s) => (
+                  <div>
+                    <dt>{s.label}</dt>
+                    <dd>{s.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+            <Content />
+          </article>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section aria-labelledby="roles">
+    <h2 id="roles">Where</h2>
+    <ul class="roles">
+      {roles.map((r) => (
+        <li>
+          <span class="org">{r.org}</span>
+          <span class="title">{r.title}</span>
+          <span class="period">{r.period}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section aria-labelledby="edu">
+    <h2 id="edu">Education</h2>
+    <ul class="roles">
+      {education.map((e) => (
+        <li>
+          <span class="org">{e.school}</span>
+          <span class="title">{e.degree}</span>
+          <span class="period">{e.year}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .lede { color: var(--muted); }
+  .dragons { list-style: none; padding: 0; margin: 0; }
+  .dragons > li { padding: 1.5rem 0; border-top: 1px solid var(--rule); }
+  article h3 { font-size: 1.1rem; margin: 0; }
+  .meta { color: var(--muted); font-size: 0.9rem; margin: 0.25rem 0 0.75rem; }
+  .stats { display: flex; flex-wrap: wrap; gap: 2rem; margin: 0 0 1rem; }
+  .stats div { display: flex; flex-direction: column-reverse; }
+  .stats dt { color: var(--muted); font-size: 0.85rem; }
+  .stats dd { margin: 0; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.01em; }
+  article :global(p:last-child) { margin-bottom: 0; }
+  .roles { list-style: none; padding: 0; margin: 0; }
+  .roles li {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0 1rem;
+    padding: 0.6rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  @media (min-width: 600px) {
+    .roles li { grid-template-columns: 11rem 1fr auto; }
+  }
+  .roles .org { font-weight: 600; }
+  .roles .period { color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
+</style>

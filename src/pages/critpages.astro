@@ -4,12 +4,13 @@ import Base from '../layouts/Base.astro';
 
 <Base
   title="CritPages | Chris Dabel"
-  description="A critique app for unpublished writing, built solo on Expo and Supabase. What it is, what I decided, and why the access model lives in the database."
+  description="A critique app for unpublished writing, built solo with Claude Code. The architecture decisions that kept four hundred AI-written commits from becoming a Frankenstein app."
 >
   <h1>CritPages</h1>
   <p class="lede">
-    The critique app for unpublished writing. Founder and sole engineer, in
-    beta since mid 2026.
+    The critique app for unpublished writing. Founder and sole engineer. Built
+    with Claude Code, with me as the architect in the loop, in beta since
+    mid 2026.
   </p>
 
   <section aria-labelledby="what">
@@ -19,65 +20,143 @@ import Base from '../layouts/Base.astro';
       single partner. Readers mark them up on their phones: a tag, a strike, a
       heart, or a comment attached to a word, a sentence, or a paragraph, each
       in about two taps. Each reader sees only their own marks. The writer sees
-      all of them together.
+      all of them together. Groups can read live, everyone following along on
+      their own device while one person reads aloud.
     </p>
     <p>
-      Groups can read live, everyone following along and marking on their own
-      device while one person reads aloud. Pages are drawn rather than
-      rendered as selectable text, so a manuscript cannot be copied out. Access
-      is by invitation, and a writer can remove a reader or end a round.
-    </p>
-    <p>
-      Native apps for iPhone and Android, with the web handling invitations,
-      accounts, finding beta readers, and scheduling sessions. One-on-one use
-      is free. Groups and beta rounds are paid, and free during the beta.
+      Native apps for iPhone and Android. The web handles invitations,
+      accounts, finding beta readers, and scheduling. Manuscripts never touch
+      the web.
     </p>
   </section>
 
+  <section aria-labelledby="stack">
+    <h2 id="stack">Stack</h2>
+    <ul class="stack">
+      <li>Expo and React Native, TypeScript, with the manuscript painted by Skia rather than rendered as text</li>
+      <li>Supabase: Postgres with row-level security, realtime, and edge functions</li>
+      <li>Next.js on Vercel Pro for the web, plain and portable by rule</li>
+      <li>Resend for every email the software sends</li>
+      <li>Route 53 DNS as Terraform, email records included</li>
+      <li>Maestro end-to-end flows on real devices, and an RLS suite run against the live database</li>
+    </ul>
+  </section>
+
   <section aria-labelledby="decisions">
-    <h2 id="decisions">Decisions</h2>
+    <h2 id="decisions">What kept it from becoming a Frankenstein app</h2>
+    <p>
+      Four hundred commits in fifteen weeks, most of the code written by
+      Claude Code with me directing. The model is not what kept it coherent. A
+      short list of ranked rules did, plus the habit of recording every
+      decision, and its reasoning, in the commit that made it. These are the
+      ones that mattered.
+    </p>
     <dl class="decisions">
       <div>
-        <dt>Access control lives in the database</dt>
+        <dt>Ranked goals, written down before the first screen</dt>
         <dd>
-          Who can see a page is decided by Postgres row-level security
-          policies in Supabase, not by application code. An author's
-          unpublished work is visible only to their critique group, and that
-          holds for every client and every query path. It is the same
-          discipline as the row access policies I built for a fintech's
-          multi-tenant warehouse, applied to a product.
+          The conventions file ranks four goals and says the higher one wins
+          when they conflict: correctness and testability, then privacy and
+          trust, then cheap change, then maintainability for a solo author who
+          comes back after months away. A counterweight sits under them: ship
+          the MVP. Every "helpful" addition the model proposed was tested
+          against that list, and most lost.
         </dd>
       </div>
       <div>
-        <dt>One codebase, both phones</dt>
+        <dt>The security boundary lives in Postgres, and is tested against the live database</dt>
         <dd>
-          React Native with Expo, shipping to iOS and Android from a single
-          codebase. For one engineer, that is the difference between a product
-          and a prototype.
+          The first migration was the schema and its row-level security
+          policies together. The next day an integration suite ran those
+          policies against the real database, and caught a real gap on its
+          first run. That suite has grown to about 150 assertions covering
+          document scoping, per-reviewer isolation, frozen-text immutability,
+          and lifecycle. Unpublished manuscripts are the data; a scoping mistake
+          is a privacy incident with the users least likely to forgive it.
         </dd>
       </div>
       <div>
-        <dt>The web does what phones are bad at</dt>
+        <dt>Supabase is called in exactly one layer</dt>
         <dd>
-          Invitations, accounts, finding beta readers, and scheduling live
-          sessions run on a Next.js site on Vercel. The reading and marking
-          stay native, where two taps on a sentence feel right.
+          Domain code is pure and knows nothing about React or the database.
+          Services orchestrate it through repository interfaces. The repository
+          layer is the only place the Supabase client appears, and the UI calls
+          services, never repositories. Dependencies point inward. The same
+          file forbids speculative abstraction: no interface until there is a
+          second implementation or a test seam that needs it.
         </dd>
       </div>
       <div>
-        <dt>Feedback is independent</dt>
+        <dt>Spikes go behind a flag, and the loser gets deleted</dt>
         <dd>
-          Readers never see each other's marks while they read, so nobody
-          anchors on the first opinion. The writer gets the full set, and the
-          disagreements are the useful part.
+          The reader started as ordinary React Native text. A Skia canvas
+          renderer was built as a spike behind a renderer boundary and a flag,
+          retired every risk that could kill the switch, and ten days later
+          became the only renderer. The legacy path, both flags, the swap plan,
+          and thirteen hundred lines went with it. Drawing the page instead of
+          rendering text is also why a manuscript cannot be copied out.
         </dd>
       </div>
       <div>
-        <dt>The page looks like a page</dt>
+        <dt>A decision stands until its premise dies</dt>
         <dd>
-          No spellcheck underlines, no track-changes clutter. The reading
-          surface is a clean copy of the manuscript, and the marks sit on top
-          of it.
+          A spike opened all of Moby Dick as one document on the simulator and
+          settled the question: no chapter splitting for MVP. The same day a
+          Galaxy S24 Ultra killed the app at 316,000 words. The decision was
+          reversed in a commit that names the dead premise, chooses chapter
+          splitting at import because it is additive code rather than surgery
+          on the most invariant-dense file in the project, and parks the
+          windowed reader with its two known failure modes recorded.
+        </dd>
+      </div>
+      <div>
+        <dt>Decision gates that say no</dt>
+        <dd>
+          A document-to-workspace many-to-many was designed, then deferred at
+          the gate: the survival benefit already shipped through soft delete,
+          and the only unique payoff did not clearly beat a copy. What shipped
+          instead was a re-architecture onto a link model, author-owned pages
+          shared by links, with sessions that end themselves.
+        </dd>
+      </div>
+      <div>
+        <dt>Renames go full depth, and migrations are history</dt>
+        <dd>
+          When "group" became "workspace" and "facilitator" became "owner",
+          the rename went through the schema, not just the UI. An applied
+          migration is never edited, even when its header carries the
+          product's old name. The newest migration that touches a table is the
+          present; the rest are dated records of what was true that day.
+        </dd>
+      </div>
+      <div>
+        <dt>The code is canonical, and the cuts are deliberate</dt>
+        <dd>
+          The spec that started the project was demoted to rationale once the
+          code outgrew it. What still binds from it is the list of things
+          absent on purpose: no page cap, no save buttons, no AI in the
+          product, no drag-to-select. The conventions file tells the model not
+          to reintroduce them as helpful additions.
+        </dd>
+      </div>
+      <div>
+        <dt>The web is plain on purpose</dt>
+        <dd>
+          Full Next.js rather than a static export, because static to
+          server-rendered is a migration and the reverse is a config change.
+          No vendor-only APIs, so the host can move in an afternoon. Netlify was
+          tried and rejected the same day, with the reasons written down.
+          Marketing at the apex, the product on a subdomain, DNS in Terraform.
+        </dd>
+      </div>
+      <div>
+        <dt>Built for the readers it actually has</dt>
+        <dd>
+          Writing circles include retirees with declining vision. The app was
+          walked on an iPhone SE at the largest accessibility text size, every
+          broken control was measured and capped inside the shared components,
+          and the painted manuscript now follows the phone's text setting until
+          the reader picks their own.
         </dd>
       </div>
     </dl>
@@ -86,8 +165,7 @@ import Base from '../layouts/Base.astro';
   <section aria-labelledby="status">
     <h2 id="status">Status</h2>
     <p>
-      Pre-launch beta. Early access is open by email to a limited number of
-      groups, beta rounds, and pairs at
+      Pre-launch beta. Early access is open by email at
       <a href="https://critpages.com">critpages.com</a>. Product notes go out
       on <a href="https://critpages.substack.com">the CritPages Substack</a>.
     </p>
@@ -96,8 +174,10 @@ import Base from '../layouts/Base.astro';
 
 <style>
   .lede { font-size: 1.3rem; line-height: 1.4; margin-bottom: 1.75rem; }
+  .stack { padding-left: 1.2rem; margin: 0; }
+  .stack li { margin-bottom: 0.35rem; }
   .decisions { margin: 0; }
-  .decisions div { padding: 1rem 0; border-top: 1px solid var(--rule); }
-  .decisions dt { font-weight: 600; margin-bottom: 0.25rem; }
+  .decisions div { padding: 1.1rem 0; border-top: 1px solid var(--rule); }
+  .decisions dt { font-weight: 600; margin-bottom: 0.3rem; }
   .decisions dd { margin: 0; }
 </style>

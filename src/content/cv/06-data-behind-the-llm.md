@@ -2,7 +2,7 @@
 title: The data behind the LLM
 org: Finally
 period: "2026"
-order: 6
+order: 1
 stats:
   - value: "12.6M"
     label: labeled training rows

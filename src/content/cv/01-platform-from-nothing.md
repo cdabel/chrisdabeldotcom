@@ -2,7 +2,7 @@
 title: A data platform where there was none
 org: Finally
 period: 2025 to 2026
-order: 1
+order: 3
 stats:
   - value: "438"
     label: dbt models

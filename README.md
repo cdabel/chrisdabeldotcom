@@ -33,14 +33,18 @@ portfolio. The site supports an active job search.
   DNS stays per-site: each site repo owns its own hosted zone, as critpages.com
   and raisingandconnecting.com already do. Decided 2026-10-23.
 - Repo is public from the start.
+- Thesis, decided 2026-10-23: both "I build the data layer AI runs on" and
+  "I work with AI as a multiplier", in that order. The home page carries it;
+  the CV leads with the AI entries.
+- Substack link is labeled "Writing", with the pen name Cael Lawenu in the
+  description sentence. Use the same label on LinkedIn and the Substack About.
+- Page inventory: `/` (thesis and Elsewhere block), `/cv/` (accomplishments
+  and timeline). Case-study pages are still undecided.
 
 ### Pending
 
 - Visual design.
-- Page inventory.
-- Whether CritPages gets a case-study page.
-- Substack link label: "Cael Lawenu" or "writing". Pick once and use the same
-  label on the site, LinkedIn, and the Substack About page.
+- Whether CritPages or the Finally platform get case-study pages.
 
 ## Development
 

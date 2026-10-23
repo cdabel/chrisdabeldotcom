@@ -2,7 +2,92 @@
 import Base from '../layouts/Base.astro';
 ---
 
-<Base title="Chris Dabel">
+<Base
+  title="Chris Dabel"
+  description="Data engineer and architect. I build the data layer AI runs on, and I build with AI while I do it."
+>
   <h1>Chris Dabel</h1>
-  <p><a href="/cv/">CV</a></p>
+  <p class="lede">
+    Data engineer and architect. I build the data layer AI runs on, and I
+    build with AI while I do it.
+  </p>
+
+  <p>
+    Twelve years of pipelines, warehouses, and the infrastructure behind
+    production analytics and ML. Most recently the founding data engineer at a
+    fintech, where I owned the whole path solo: ingestion, a Snowflake medallion
+    architecture, orchestration in Airflow on AWS, and the governance that let
+    an LLM product see only what each tenant was entitled to. The same platform
+    fed the model: a labeled corpus in the millions of rows, a harness for
+    scoring candidate models against each other, and per-call cost analytics so
+    nobody had to guess what the AI was spending.
+  </p>
+
+  <p>
+    AI is a multiplier in my work, not a substitute for it. Agentic development
+    in Claude Code, custom skills and MCP servers, RAG on Snowflake Cortex. This
+    site was built that way and the source is public. Knowing where AI belongs
+    in a system, and where it does not, is most of the job now.
+  </p>
+
+  <p>
+    I do my best work at the edge of a problem nobody has mapped yet.
+    Hyperfocus is the engine. Writing is how I keep it honest: inhabit the
+    ambiguity, find the structure inside it, cut everything that is not
+    load-bearing, ship something people can use.
+  </p>
+
+  <p>
+    Looking for the next one: founding or staff-level data work, high
+    ambiguity, high autonomy, with leadership that wants architecture shaped
+    with them rather than handed to them.
+  </p>
+
+  <section aria-labelledby="elsewhere">
+    <h2 id="elsewhere">Elsewhere</h2>
+    <ul class="elsewhere">
+      <li>
+        <a href="/cv/">CV</a>
+        <span>What I have built, with the one or two numbers that matter.</span>
+      </li>
+      <li>
+        <a href="https://github.com/cdabel" rel="me">GitHub</a>
+        <span>Including the <a href="https://github.com/cdabel/chrisdabeldotcom">source for this site</a>.</span>
+      </li>
+      <li>
+        <a href="https://critpages.com">CritPages</a>
+        <span>
+          An app for sharing unpublished work for critique, in development. Built
+          solo on React Native, Expo, and Supabase, with Postgres row-level
+          security so a manuscript is visible only to its critique group.
+        </span>
+      </li>
+      <li>
+        <a href="https://enternyxus.com" rel="me">Writing</a>
+        <span>Fiction, poetry, and essays as Cael Lawenu, on Substack.</span>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/chrisdabel" rel="me">LinkedIn</a>
+        <span>The longer version, and the recommendations.</span>
+      </li>
+    </ul>
+  </section>
 </Base>
+
+<style>
+  .lede { font-size: 1.15rem; }
+  .elsewhere { list-style: none; padding: 0; margin: 0; }
+  .elsewhere li {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0 1rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  @media (min-width: 600px) {
+    .elsewhere li { grid-template-columns: 7rem 1fr; }
+  }
+  .elsewhere > li > a { font-weight: 600; text-decoration: none; }
+  .elsewhere > li > a:hover { text-decoration: underline; }
+  .elsewhere span { color: var(--muted); }
+</style>

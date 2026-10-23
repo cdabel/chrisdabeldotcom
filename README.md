@@ -61,9 +61,9 @@ portfolio. The site supports an active job search.
 ### Pending
 
 - Whether the Finally platform gets a case-study page.
-- CritPages case study: the "why I built it" is still absent until Chris
-  supplies it. Decisions are drawn from the commit history of the two private
-  repos (CritPages/critpages and CritPages/critpages-web) as of 2026-10-07.
+- CritPages case study decisions are drawn from the commit history of the two
+  private repos (CritPages/critpages and CritPages/critpages-web) as of
+  2026-10-07.
 - Borrowing-base entry on the CV. The ~$500K figure is Chris's recollection,
   not a record; it may have been higher. Still to confirm if possible: whether
   the companies were absent from the tape or present with disqualifying

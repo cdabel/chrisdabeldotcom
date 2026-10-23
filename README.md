@@ -60,7 +60,7 @@ portfolio. The site supports an active job search.
   12.6M corpus is the model's target size; the RAG serving service was built
   by colleagues, Chris authored the retrieval architecture and corpus.
 - Page inventory: `/` (thesis and Elsewhere block), `/cv/` (accomplishments
-  and timeline), `/finally/` (platform case study from the dossier and
+  and timeline), `/work/` (index of case studies, nav label "Work"), `/finally/` (platform case study from the dossier and
   resumes), `/critpages/` (case study from the private repos' history).
 - Raising & Connecting (WordPress) is listed in the Elsewhere block only.
 

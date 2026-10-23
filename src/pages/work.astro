@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+
+const studies = [
+  {
+    href: '/finally/',
+    title: 'A fintech data platform, built solo',
+    org: 'Finally, 2025 to 2026',
+    blurb:
+      'The warehouse, the orchestration under it, the lender reporting on top, and the evaluation layer for the LLM systems. What was inherited, the build in order, ten decisions, and what it cost to run.',
+  },
+  {
+    href: '/critpages/',
+    title: 'CritPages',
+    org: 'Founder and sole engineer, 2026',
+    blurb:
+      'A critique app for unpublished writing, built with Claude Code. The architecture decisions that kept four hundred AI-written commits from becoming a Frankenstein app.',
+  },
+];
+---
+
+<Base
+  title="Work | Chris Dabel"
+  description="Two case studies: a fintech data platform built solo, and a critique app for writers built with Claude Code."
+>
+  <h1>Work</h1>
+  <p class="lede">Two case studies. Each one says what was decided and why, not only what was built.</p>
+
+  <ul class="studies">
+    {studies.map((s) => (
+      <li>
+        <h2><a href={s.href}>{s.title}</a></h2>
+        <p class="org">{s.org}</p>
+        <p>{s.blurb}</p>
+      </li>
+    ))}
+  </ul>
+</Base>
+
+<style>
+  .lede { font-size: 1.3rem; line-height: 1.4; margin-bottom: 1.5rem; }
+  .studies { list-style: none; padding: 0; margin: 0; }
+  .studies li { padding: 1.5rem 0; border-top: 1px solid var(--rule); }
+  .studies h2 { margin: 0 0 0.2rem; font-size: 1.25rem; }
+  .studies h2 a { text-decoration: none; }
+  .studies h2 a:hover { text-decoration: underline; }
+  .org { color: var(--muted); font-size: 0.9rem; margin: 0 0 0.6rem; }
+  .studies p:last-child { margin: 0; }
+</style>

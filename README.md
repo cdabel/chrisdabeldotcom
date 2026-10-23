@@ -66,14 +66,50 @@ portfolio. The site supports an active job search.
 
 ### Pending
 
-- CritPages case study decisions are drawn from the commit history of the two
-  private repos (CritPages/critpages and CritPages/critpages-web) as of
-  2026-10-07.
-- Borrowing-base entry on the CV. The ~$500K figure is Chris's recollection,
-  not a record; it may have been higher. Still to confirm if possible: whether
-  the companies were absent from the tape or present with disqualifying
-  fields, the root-cause category, where in the pipeline the fix landed, and
-  how many companies were affected.
+As of 2026-10-23, end of day. The site is live and complete enough to share.
+
+Chris's items:
+
+- Paste https://chrisdabel.com into LinkedIn's Post Inspector so it picks up
+  the social card, and add the site URL to the LinkedIn profile.
+- Add the site to Google Search Console and submit
+  https://chrisdabel.com/sitemap-index.xml.
+- LinkedIn parity with the resumes is deliberately deferred; close enough.
+- CritPages mobile repo: replace the Expo boilerplate README (roadmap row 4.5,
+  pushed). Do before the repo is shown to anyone.
+
+AWS hygiene, agreed plan, not started. Local CLI default profile is root.
+The account has no Organization and no IAM Identity Center instance.
+
+1. Chris enables IAM Identity Center in the console (this also enables
+   Organizations with this account as management account; one-way).
+2. Terraform, under the root session as setup: one user, one permission
+   set, one assignment.
+3. Chris accepts the email, sets password and MFA, runs `aws configure sso`
+   to create a named profile.
+4. Under that profile, Terraform creates an S3 state bucket and the site's
+   state is migrated into it (`terraform init -migrate-state`).
+5. Remove any root access key from the laptop; root stays console-only.
+
+Later, if ever:
+
+- Analytics. Nothing is collected today; a privacy-respecting option with
+  no banner, or none.
+- Rerun the dossier's numbers around 2026-12-01. CV figures are dated
+  2 September 2026 and the dossier says to re-query before quoting them
+  more than a quarter on.
+- Borrowing-base entry: the ~$500K figure is Chris's recollection and may
+  have been higher. Still to confirm if possible: whether the companies were
+  absent from the tape or present with disqualifying fields, the root-cause
+  category, where in the pipeline the fix landed, and how many companies
+  were affected.
+
+Done today, for the record: repo, Pages deploy, Route 53 in Terraform, home
+page, CV with compact and detailed views and a timeline, CritPages and
+Finally case studies, type system and palette, theme toggle, favicon and
+social card, sitemap and robots and 404, font preloading, headshots.
+Lighthouse on the local build: 100/100/100/100 on three pages, 99 performance
+on the CV.
 
 ## Development
 

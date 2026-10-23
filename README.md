@@ -60,13 +60,12 @@ portfolio. The site supports an active job search.
   12.6M corpus is the model's target size; the RAG serving service was built
   by colleagues, Chris authored the retrieval architecture and corpus.
 - Page inventory: `/` (thesis and Elsewhere block), `/cv/` (accomplishments
-  and timeline), `/critpages/` (case study, built from critpages.com and the
-  resume line; no repo access yet).
+  and timeline), `/finally/` (platform case study from the dossier and
+  resumes), `/critpages/` (case study from the private repos' history).
 - Raising & Connecting (WordPress) is listed in the Elsewhere block only.
 
 ### Pending
 
-- Whether the Finally platform gets a case-study page.
 - CritPages case study decisions are drawn from the commit history of the two
   private repos (CritPages/critpages and CritPages/critpages-web) as of
   2026-10-07.

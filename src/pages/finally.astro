@@ -1,0 +1,353 @@
+---
+import Base from '../layouts/Base.astro';
+
+const credits = [
+  ['Jan', 1352, 13.4], ['Feb', 1163, 9.0], ['Mar', 1165, 1.9], ['Apr', 1229, 1.8],
+  ['May', 867, 1.2], ['Jun', 273, 0.08], ['Jul', 344, 0.25], ['Aug', 331, 0.25],
+] as const;
+---
+
+<Base
+  title="Finally | Chris Dabel"
+  description="A fintech data platform built solo in fourteen months: the warehouse, the orchestration under it, the lender reporting on top, and the evaluation layer for the company's LLM systems."
+>
+  <h1>A fintech data platform, built solo</h1>
+  <p class="lede">
+    Founding Senior Data Engineer at Finally, July 2025 to September 2026.
+    Three products on one Snowflake warehouse: a corporate card program and a
+    bookkeeping product across two generations.
+  </p>
+
+  <section aria-labelledby="inherited">
+    <h2 id="inherited">What I inherited</h2>
+    <p>
+      A repo of 281 models, every one of them copying a Postgres table into
+      Snowflake. No marts, no dimensions, no facts, no tests, no documentation,
+      and nobody in the seat; the platform engineer who had stood up the
+      replication left two months before I started. The hardest source was the
+      card platform, which gives every customer their own Postgres schema, so
+      the replication layer fanned every table out across roughly 1,600 tenant
+      schemas of about 120 tables each.
+    </p>
+  </section>
+
+  <section aria-labelledby="shape">
+    <h2 id="shape">The shape of it</h2>
+    <div class="diagram">
+      <svg viewBox="0 0 640 520" role="img" aria-labelledby="diagram-title">
+        <title id="diagram-title">Sources flow through bronze, silver, and gold layers to dashboards, lender tapes, a sponsor-bank pack, and the AI service. Airflow and Snowflake tasks orchestrate the layers; row access and masking policies cover silver and gold.</title>
+        <g font-family="var(--text)" font-size="13" fill="currentColor">
+          <!-- sources -->
+          <g>
+            <rect x="110" y="16" width="136" height="44" rx="4" fill="none" stroke="currentColor" />
+            <text x="178" y="34" text-anchor="middle">Card platform</text>
+            <text x="178" y="50" text-anchor="middle" font-size="11" opacity="0.7">schema per tenant</text>
+            <rect x="252" y="16" width="136" height="44" rx="4" fill="none" stroke="currentColor" />
+            <text x="320" y="34" text-anchor="middle">Bookkeeping</text>
+            <text x="320" y="50" text-anchor="middle" font-size="11" opacity="0.7">Aurora, two generations</text>
+            <rect x="394" y="16" width="136" height="44" rx="4" fill="none" stroke="currentColor" />
+            <text x="462" y="34" text-anchor="middle">AI telemetry</text>
+            <text x="462" y="50" text-anchor="middle" font-size="11" opacity="0.7">per-call events</text>
+          </g>
+          <text x="320" y="86" text-anchor="middle" font-size="11" opacity="0.7">Fivetran, then self-hosted Airbyte</text>
+          <path d="M178 60 V100 M320 60 V100 M462 60 V100" stroke="currentColor" fill="none" />
+
+          <!-- layers -->
+          <rect x="110" y="100" width="420" height="40" rx="4" fill="none" stroke="currentColor" />
+          <text x="124" y="124">Bronze</text>
+          <text x="516" y="124" text-anchor="end" font-size="11" opacity="0.7">raw landing, 196K objects</text>
+
+          <path d="M320 140 V160" stroke="currentColor" fill="none" />
+          <rect x="110" y="160" width="420" height="40" rx="4" fill="none" stroke="currentColor" />
+          <text x="124" y="184">Silver</text>
+          <text x="516" y="184" text-anchor="end" font-size="11" opacity="0.7">flattened, tenant-normalized, 1.4K models</text>
+
+          <path d="M320 200 V220" stroke="currentColor" fill="none" />
+          <rect x="110" y="220" width="420" height="92" rx="4" fill="none" stroke="currentColor" />
+          <text x="124" y="244">Gold</text>
+          <rect x="124" y="256" width="124" height="44" rx="3" fill="none" stroke="currentColor" opacity="0.7" />
+          <text x="186" y="274" text-anchor="middle" font-size="12">Dims, facts, marts</text>
+          <text x="186" y="290" text-anchor="middle" font-size="11" opacity="0.7">board metrics</text>
+          <rect x="258" y="256" width="124" height="44" rx="3" fill="none" stroke="currentColor" opacity="0.7" />
+          <text x="320" y="274" text-anchor="middle" font-size="12">Reporting</text>
+          <text x="320" y="290" text-anchor="middle" font-size="11" opacity="0.7">tapes and packs</text>
+          <rect x="392" y="256" width="124" height="44" rx="3" fill="none" stroke="currentColor" opacity="0.7" />
+          <text x="454" y="274" text-anchor="middle" font-size="12">ML eval and features</text>
+          <text x="454" y="290" text-anchor="middle" font-size="11" opacity="0.7">corpus, shadow runs</text>
+
+          <!-- consumers -->
+          <path d="M178 312 V352 M320 312 V352 M462 312 V352" stroke="currentColor" fill="none" />
+          <rect x="110" y="352" width="136" height="58" rx="4" fill="none" stroke="currentColor" />
+          <text x="178" y="372" text-anchor="middle">Dashboards</text>
+          <text x="178" y="388" text-anchor="middle" font-size="11" opacity="0.7">Superset and Streamlit</text>
+          <text x="178" y="402" text-anchor="middle" font-size="11" opacity="0.7">exec, finance, risk</text>
+          <rect x="252" y="352" width="136" height="58" rx="4" fill="none" stroke="currentColor" />
+          <text x="320" y="372" text-anchor="middle">Lender and bank</text>
+          <text x="320" y="388" text-anchor="middle" font-size="11" opacity="0.7">tasks, S3, Lambda, SQS</text>
+          <text x="320" y="402" text-anchor="middle" font-size="11" opacity="0.7">GPG over SFTP</text>
+          <rect x="394" y="352" width="136" height="58" rx="4" fill="none" stroke="currentColor" />
+          <text x="462" y="372" text-anchor="middle">AI service</text>
+          <text x="462" y="388" text-anchor="middle" font-size="11" opacity="0.7">feature aggregates</text>
+          <text x="462" y="402" text-anchor="middle" font-size="11" opacity="0.7">as low-trust priors</text>
+
+          <!-- orchestration, left -->
+          <path d="M92 100 V312" stroke="var(--accent)" stroke-width="2" fill="none" />
+          <text transform="translate(80 206) rotate(-90)" text-anchor="middle" font-size="12">Airflow on MWAA, Snowflake tasks</text>
+
+          <!-- governance, right -->
+          <path d="M548 160 V312" stroke="var(--accent)" stroke-width="2" fill="none" />
+          <text transform="translate(562 236) rotate(90)" text-anchor="middle" font-size="12">Row access and masking</text>
+
+          <!-- legend -->
+          <text x="110" y="452" font-size="12">438 dbt models across the three layers, 326 tests, 4 SCD-2 snapshots,</text>
+          <text x="110" y="470" font-size="12">75 native Snowflake procedures, tasks, and report functions, 7 DAGs, 2 Lambdas.</text>
+          <text x="110" y="496" font-size="12" opacity="0.7">About 280M rows resident; 10.6B rows materialized a year.</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section aria-labelledby="order">
+    <h2 id="order">The build, in order</h2>
+    <p>
+      The arc matters more than any one piece: the analytics layer first,
+      then the orchestration and ingestion underneath it once the vendors
+      had to go, then governance and model evaluation on top once the
+      company's AI products started handling customer financial text.
+    </p>
+    <ol class="arc">
+      <li>
+        <span class="when">Jul to Nov 2025</span>
+        <span>The gold layer, product by product: card usage and activation cohorts, the sales funnel, risk and delinquency, then platform-wide revenue and retention. Tests shipped with each model, not after.</span>
+      </li>
+      <li>
+        <span class="when">Dec 2025</span>
+        <span>The delinquency model behind the lender covenant rewritten from five recursive CTEs to window functions. Six hours on an X-Large became thirteen seconds on an X-Small.</span>
+      </li>
+      <li>
+        <span class="when">Feb 2026</span>
+        <span>Tenant-flattening fan-out pruned from 92 models to the 9 anything read. Pipeline queries fell from 13 million a month to under 2 million, and stayed there.</span>
+      </li>
+      <li>
+        <span class="when">Apr 2026</span>
+        <span>The retrieval architecture and corpus design for a customer-facing RAG assistant, written as the forcing function for a product nobody had scoped yet.</span>
+      </li>
+      <li>
+        <span class="when">Apr to Jun 2026</span>
+        <span>Two vendor exits without an outage: dbt Cloud to Airflow on MWAA provisioned in Terraform, and four sources from Fivetran to self-hosted Airbyte with the VPC peerings adopted into state.</span>
+      </li>
+      <li>
+        <span class="when">Jun to Sep 2026</span>
+        <span>Governance for the AI surfaces, the classifier evaluation platform, and per-call cost and adoption analytics.</span>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="decisions">
+    <h2 id="decisions">Decisions I would defend</h2>
+    <dl class="decisions">
+      <div>
+        <dt>Model to consumption, not to completeness</dt>
+        <dd>
+          The replication layer brought everything across in case someone
+          needed it. Ninety-two models fanned a UNION across about 120 tenant
+          schemas every night to serve nine tables anyone read. The fix was a
+          config block disabling the rest, and the diff was almost entirely
+          deletions. If I started again I would land nothing until something
+          downstream asked for it.
+        </dd>
+      </div>
+      <div>
+        <dt>Windows over recursion</dt>
+        <dd>
+          A recursive CTE for a running total or a forward-fill is a tell.
+          Every recursion in the delinquency model became a window function
+          over a shared date spine, and the result was measurable in query
+          history: 617,770 rows in 12.7 seconds worst case, zero spill. The
+          legacy view now carries a do-not-use prefix, which is the part I
+          find most satisfying.
+        </dd>
+      </div>
+      <div>
+        <dt>Every definition lives in exactly one place</dt>
+        <dd>
+          The paying-customer universe is versioned and enforced identically
+          in the company dimension and the board segmentation mart, so the
+          two cannot disagree. One macro defines the evaluation denominator
+          for every ML metric, so offline and online scoring cannot drift
+          apart. If two tables can disagree about a definition, eventually
+          they will, and you find out in a board meeting.
+        </dd>
+      </div>
+      <div>
+        <dt>Point-in-time, decided before it is expensive</dt>
+        <dd>
+          Any time a mutable attribute joins a historical fact, ask whether
+          today's value is about to rewrite last quarter. Three SCD-2
+          snapshots exist for that reason: grace periods, because the
+          delinquency model rebuilds all history nightly; business status, so
+          month-end counts use the status in effect; loyalty balances, because
+          the source is current-state only.
+        </dd>
+      </div>
+      <div>
+        <dt>Tenant isolation as a design input</dt>
+        <dd>
+          Every silver and gold table is keyed and clustered on the tenant so
+          the row access policy prunes partitions instead of scanning. The
+          policy checks role membership against an entitlements table, since
+          a policy cannot trust session variables anyone can set. Masking is
+          split by job: the eval reader sees free text and not dollar values.
+          Because these tables are rebuilt with create-or-replace, each model
+          re-attaches its own policy in a post-hook, and the proposal states
+          in writing that the raw landing table is not covered.
+        </dd>
+      </div>
+      <div>
+        <dt>Schedule on data, not on clocks</dt>
+        <dd>
+          Gold DAGs run when the silver DAG publishes an Airflow Dataset, not
+          at a fixed hour, so gold rebuilds the moment silver lands and never
+          on stale silver. Dataset URIs are declared once in a shared module,
+          because Airflow matches on the string and a drifted literal fails
+          silently.
+        </dd>
+      </div>
+      <div>
+        <dt>Test the invariant, not the row count</dt>
+        <dd>
+          A not-null test says the pipeline ran. A monotonicity test says the
+          business logic is still right: days past due go up by exactly one
+          or reset to zero. Ending balance equals beginning plus spend minus
+          payments, to the cent. Recoveries never exceed the write-off they
+          net against. Approved company counts never decrease. Six of those
+          sit beside 326 generic tests, and they are the half that matters.
+        </dd>
+      </div>
+      <div>
+        <dt>Build order is a dependency</dt>
+        <dd>
+          The delinquency model was one day short and the SQL was fine. Its
+          date spine filtered on a pre-computed "is past" flag from a
+          dimension that rebuilt after it in the schedule, so yesterday was
+          never past. The fix was a run-time cutoff. The lesson became a
+          dependency-review checklist the repo now reviews every model change
+          against: refresh cadence, build order, downstream blast radius, and
+          never a pre-computed relative-date flag as a spine filter.
+        </dd>
+      </div>
+      <div>
+        <dt>Write down what a metric does not measure</dt>
+        <dd>
+          One release criterion was no class recall drop over fifteen points.
+          The eval mart's class-concentration columns look like they cover
+          it and do not; they catch collapse to one class and miss one
+          class's recall falling while the distribution holds. The limitation
+          is in the model header, the columns are labeled a collapse canary,
+          and the follow-up mart at the right grain is specified.
+        </dd>
+      </div>
+      <div>
+        <dt>The Terraform apply I did not run</dt>
+        <dd>
+          Adopting eight live VPC peerings into state, the plan also showed
+          drift in another team's module: a different node type than the code
+          declared, a public load balancer where the code said private.
+          Applying would have replaced their node group and taken down
+          ingestion. I merged the no-op, did not apply, wrote up the specific
+          resources at risk, and took it to the team that owned them. When
+          you are the only person in your function, the temptation is to
+          just fix it. The right move was to make the risk legible.
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section aria-labelledby="cost">
+    <h2 id="cost">What it cost to run</h2>
+    <p>
+      Pipeline compute is the Snowflake credits burned rebuilding models on
+      the warehouse the dbt service account uses, nothing else. Both series
+      are from Snowflake's own account usage views, 2026.
+    </p>
+    <table class="cost">
+      <thead>
+        <tr><th scope="col">Month</th><th scope="col">Pipeline credits</th><th scope="col">Pipeline queries</th></tr>
+      </thead>
+      <tbody>
+        {credits.map(([m, c, q]) => (
+          <tr><th scope="row">{m}</th><td>{c.toLocaleString()}</td><td>{q}M</td></tr>
+        ))}
+      </tbody>
+    </table>
+    <p>
+      The query collapse in March tracks the February pruning commit exactly.
+      The credit drop in June tracks the vendor exits. A company restructuring
+      in April reduced transaction volume in the same window, so part of the
+      credit decline is organic. Pipeline compute is driven by model count and
+      rebuild size far more than by customer volume, which is why the pruning
+      and orchestration work is the dominant lever, but the fully attributable
+      figures are the query series and the delinquency rebuild, measured on
+      the same model and warehouse before and after.
+    </p>
+  </section>
+
+  <section aria-labelledby="boundaries">
+    <h2 id="boundaries">Boundaries</h2>
+    <p>
+      Things a reference check would turn up, so they are here first.
+    </p>
+    <ul>
+      <li>
+        I did not build the RAG serving service: the agent, the vector
+        store, and its calibration harness belong to two colleagues. I
+        authored the retrieval architecture and corpus design, built the
+        classifier evaluation platform, the cost and adoption analytics, and
+        the tenant governance model, and wrote the architecture recon of
+        their service that the eval data contract was specced from.
+      </li>
+      <li>
+        The AI analytics models shipped merged but disabled, pending the
+        upstream event source. Built, reviewed, and lineage-validated; not
+        yet producing rows when I left.
+      </li>
+      <li>
+        The AWS side of the lender delivery pipeline predates me and has no
+        infrastructure as code: the queues, notifications, and roles were
+        console-built. I documented the whole path, including that.
+      </li>
+      <li>
+        The platform-metrics domain had a colleague leading it. My share
+        there is 19 of 64 commits. Every other domain on this page is mine
+        by a wide margin, and the Airflow and governance repos are mine
+        entirely.
+      </li>
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .lede { font-size: 1.3rem; line-height: 1.4; margin-bottom: 1.75rem; }
+  .diagram { overflow-x: auto; margin: 0 -1.25rem; padding: 0 1.25rem; }
+  .diagram svg { display: block; min-width: 560px; width: 100%; height: auto; }
+  .arc { list-style: none; padding: 0; margin: 0; }
+  .arc li {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.1rem 1rem;
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  @media (min-width: 600px) { .arc li { grid-template-columns: 8.5rem 1fr; } }
+  .arc .when { color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
+  .decisions { margin: 0; }
+  .decisions div { padding: 1.1rem 0; border-top: 1px solid var(--rule); }
+  .decisions dt { font-weight: 600; margin-bottom: 0.3rem; }
+  .decisions dd { margin: 0; }
+  .cost { border-collapse: collapse; margin: 0 0 1.1rem; font-variant-numeric: tabular-nums; }
+  .cost th, .cost td { text-align: right; padding: 0.3rem 1.25rem 0.3rem 0; border-bottom: 1px solid var(--rule); }
+  .cost th[scope='row'] { text-align: left; font-weight: 500; }
+  .cost thead th { color: var(--muted); font-weight: 500; font-size: 0.9rem; }
+  ul { padding-left: 1.2rem; }
+  li { margin-bottom: 0.5rem; }
+</style>

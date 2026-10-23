@@ -10,4 +10,4 @@ stats:
     label: candidate models scored
 ---
 
-An SCD-2 shadow-run harness scoring candidate models, per-call Bedrock cost and MCP tool-call analytics, and the retrieval architecture for a customer-facing RAG assistant.
+The data layer under an AI-led bookkeeping product: the labeled corpus and embeddings behind a RAG classifier, an SCD-2 shadow-run harness scoring candidate models against each other, and marts tracking straight-through automation, decision certainty, and per-classification inference cost. Per-call Bedrock cost and MCP tool-call analytics, and the retrieval architecture for a customer-facing assistant.

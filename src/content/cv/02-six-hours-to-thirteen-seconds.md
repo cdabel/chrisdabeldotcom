@@ -2,7 +2,7 @@
 title: A six-hour credit-risk model, now thirteen seconds
 org: Finally
 period: "2026"
-order: 4
+order: 5
 stats:
   - value: "6 h to 13 s"
     label: rebuild time

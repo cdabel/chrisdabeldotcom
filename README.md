@@ -38,6 +38,17 @@ portfolio. The site supports an active job search.
   the CV leads with the AI entries.
 - Substack link is labeled "Writing", with the pen name Cael Lawenu in the
   description sentence. Use the same label on LinkedIn and the Substack About.
+- Where LinkedIn and the September 2026 resumes disagree on dates and titles,
+  the resumes win, since they are the document that gets verified. LinkedIn
+  should be aligned to them: Lifetime Value is Senior ETL Engineer II, Jane.com
+  ends Jan 2022, UnitedHealth Group ends Jan 2020. Finally title is Founding
+  Senior Data Engineer everywhere.
+- Neurodivergence is owned on the home page through the hyperfocus line as
+  written on LinkedIn. Naming a diagnosis outright is a disclosure only Chris
+  makes, so the site implies rather than states until he says otherwise.
+- The Finally recommendation is quoted on the CV page, trimmed to one
+  contiguous sentence and attributed by name as it is on LinkedIn. Give the
+  author a heads-up.
 - Page inventory: `/` (thesis and Elsewhere block), `/cv/` (accomplishments
   and timeline). Case-study pages are still undecided.
 

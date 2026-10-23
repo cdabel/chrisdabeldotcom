@@ -43,6 +43,18 @@ const rendered = await Promise.all(
     </ol>
   </section>
 
+  <section aria-labelledby="said">
+    <h2 id="said">Said about the work</h2>
+    <blockquote>
+      <p>
+        He joined Finally to help us stand up our Data and Data Governance
+        programs, and delivered on that mandate within a tight timeline, in a
+        highly regulated industry.
+      </p>
+      <footer>Ernesto Mancebo, engineering and AI platforms, Finally. October 2026.</footer>
+    </blockquote>
+  </section>
+
   <section aria-labelledby="roles">
     <h2 id="roles">Where</h2>
     <ul class="roles">
@@ -81,6 +93,9 @@ const rendered = await Promise.all(
   .stats dt { color: var(--muted); font-size: 0.85rem; }
   .stats dd { margin: 0; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.01em; }
   article :global(p:last-child) { margin-bottom: 0; }
+  blockquote { margin: 0; padding-left: 1rem; border-left: 2px solid var(--rule); }
+  blockquote p { font-size: 1.05rem; }
+  blockquote footer { color: var(--muted); font-size: 0.9rem; }
   .roles { list-style: none; padding: 0; margin: 0; }
   .roles li {
     display: grid;

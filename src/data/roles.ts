@@ -32,6 +32,12 @@ export const roles: Role[] = [
     note: 'Where the data career started: BI Publisher data models and visualizations on the Oracle BI platform.',
   },
   { org: 'MasterControl', title: 'Technical Support Engineer II', period: 'Dec 2013 to Oct 2015' },
+  {
+    org: 'Discover Financial Services',
+    title: 'Deskside Support Analyst and Computer Technician',
+    period: '2012 to 2013',
+    note: 'Deskside support and hardware at a card issuer.',
+  },
 ];
 
 export const education = [

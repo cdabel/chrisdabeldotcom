@@ -17,17 +17,19 @@ for (const e of entries) byOrg.set(e.data.org, [...(byOrg.get(e.data.org) ?? [])
 
 <Base title="CV | Chris Dabel" description="Data engineer and architect. What I have built and where.">
   <h1>CV</h1>
-  <p class="lede">
-    Data engineer and architect, twelve years in. Below: what was built, with
-    the one or two numbers that matter, in a sentence each or in full.
-  </p>
-  <div class="controls">
-    <p class="jump"><a href="#timeline">Jump to the timeline</a></p>
-    <div class="view" role="group" aria-label="Level of detail" hidden>
-      <button type="button" data-view="compact" aria-pressed="true">Compact</button>
-      <button type="button" data-view="detailed" aria-pressed="false">Detailed</button>
-    </div>
+  <div class="view" role="group" aria-label="Level of detail" hidden>
+    <button type="button" data-view="compact" aria-pressed="true">Compact</button>
+    <button type="button" data-view="detailed" aria-pressed="false">Detailed</button>
   </div>
+  <p class="lede lede-compact">
+    Data engineer and architect, twelve years in. The short version: what was
+    built, and the one or two numbers that matter.
+  </p>
+  <p class="lede lede-detailed">
+    Data engineer and architect, twelve years in. The long version: what was
+    built, how, and why it was hard.
+  </p>
+  <p class="jump"><a href="#timeline">Jump to the timeline</a></p>
   <script is:inline>
     // Runs before the list below is parsed, so a saved choice never flashes.
     try {
@@ -140,7 +142,7 @@ for (const e of entries) byOrg.set(e.data.org, [...(byOrg.get(e.data.org) ?? [])
 </Base>
 
 <style>
-  .lede { font-size: 1.2rem; color: var(--muted); margin-bottom: 0; }
+  .lede { font-size: 1.2rem; color: var(--muted); margin: 0; }
   .dragons { list-style: none; padding: 0; margin: 0; }
   .dragons > li { padding: 1.75rem 0; border-top: 1px solid var(--rule); }
   .dragons > li:first-child { border-top: 0; padding-top: 0.5rem; }
@@ -159,16 +161,11 @@ for (const e of entries) byOrg.set(e.data.org, [...(byOrg.get(e.data.org) ?? [])
   blockquote { margin: 0; padding-left: 1.1rem; border-left: 2px solid var(--accent); }
   blockquote p { font-size: 1.1rem; font-style: italic; }
   blockquote footer { color: var(--muted); font-size: 0.9rem; }
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.5rem 1.5rem;
-    margin-top: 0.75rem;
-  }
-  .jump { margin: 0; font-size: 0.95rem; }
-  .view { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; padding: 2px; }
+  .jump { margin: 0.5rem 0 0; font-size: 0.95rem; }
+  .view { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; padding: 2px; margin: 0 0 1.25rem; }
+  .lede-detailed { display: none; }
+  :global(html[data-cv='detailed']) .lede-compact { display: none; }
+  :global(html[data-cv='detailed']) .lede-detailed { display: block; }
   .view button {
     font: inherit;
     font-size: 0.9rem;

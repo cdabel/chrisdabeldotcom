@@ -122,11 +122,15 @@ const credits = [
       </li>
       <li>
         <span class="when">Dec 2025</span>
-        <span>The delinquency model behind the lender covenant rewritten from five recursive CTEs to window functions. Six hours on an X-Large became thirteen seconds on an X-Small.</span>
+        <span>The delinquency model behind the lender covenant rewritten from five recursive CTEs to window functions. Six hours on an X-Large became thirteen seconds on an X-Small. In the card platform's backend, a Celery task that registers each new tenant with the Fivetran API on creation, naming the schema and only the tables the warehouse reads, with exponential backoff on retry. Before it, a new tenant's whole schema synced, every table.</span>
+      </li>
+      <li>
+        <span class="when">Jan 2026</span>
+        <span>The borrowing-base recovery: companies missing from the lender's loan tape traced to spreadsheet and backend data-integrity defects, fixed upstream after backend query approval, roughly half a million dollars of capacity back.</span>
       </li>
       <li>
         <span class="when">Feb 2026</span>
-        <span>Tenant-flattening fan-out pruned from 92 models to the 9 anything read. Pipeline queries fell from 13 million a month to under 2 million, and stayed there.</span>
+        <span>Tenant-flattening fan-out pruned from 92 models to the 9 anything read. Pipeline queries fell from 13 million a month to under 2 million, and stayed there. Observability in the same month: Slack and email alerting on tapes, DAGs, and connectors, and a Streamlit dashboard over a dbt Cloud API ingestion pipeline landing in a vendor-data bronze database, mapping dependencies, refresh intervals, and schedule collisions.</span>
       </li>
       <li>
         <span class="when">Apr 2026</span>

@@ -155,12 +155,13 @@ const credits = [
       <div>
         <dt>Model to consumption, not to completeness</dt>
         <dd>
-          The replication layer brought everything across in case someone
-          needed it. Ninety-two models fanned a UNION across about 120 tenant
-          schemas every night to serve nine tables anyone read. The fix was a
-          config block disabling the rest, and the diff was almost entirely
-          deletions. If I started again I would land nothing until something
-          downstream asked for it.
+          The replication layer built by a predecessor was bringing
+          everything across in case someone needed it. Ninety-two <a href="https://www.getdbt.com/">dbt</a>
+          models were fanning a UNION across about 120 tenant schemas every
+          night to serve only nine tables that were actually being used. The
+          fix was a config block disabling the rest, and the diff was almost
+          entirely deletions. My work reinforced the need to process and land
+          downstream only the data that's useful.
         </dd>
       </div>
       <div>

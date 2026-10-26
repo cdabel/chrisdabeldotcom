@@ -12,6 +12,13 @@ import Base from '../layouts/Base.astro';
     I build the platform, wire AI into it, and scale it.
   </p>
 
+  <p class="status">
+    I'm looking for my next opportunity: founding or staff-level data work in
+    high-ambiguity, high-autonomy roles, side by side with leadership that
+    values clear, competent communication and architectural decision-making
+    to shape collaborative, cross-functional teams.
+  </p>
+
   <p>
     I've spent twelve years building data pipelines, warehouses, and the
     infrastructure behind production analytics and ML. Most recently the
@@ -63,13 +70,6 @@ import Base from '../layouts/Base.astro';
     Translating between worlds and empowering decision-making at scale are
     the oldest skills I have. They are what bridge the business question to
     the right technical answer.
-  </p>
-
-  <p>
-    I'm looking for my next opportunity: founding or staff-level data work in
-    high-ambiguity, high-autonomy roles, side by side with leadership that
-    values clear, competent communication and architectural decision-making
-    to shape collaborative, cross-functional teams.
   </p>
 
   <section aria-labelledby="elsewhere">
@@ -125,7 +125,12 @@ import Base from '../layouts/Base.astro';
   .headshot { width: 8.5rem; height: 8.5rem; border-radius: 12px; flex: none; }
   @media (max-width: 480px) { .headshot { width: 6rem; height: 6rem; border-radius: 10px; } .head { gap: 1rem; } }
   .role { margin: 0 0 0.35rem; font-size: 1.35rem; font-weight: 500; }
-  .lede { font-size: 1.3rem; line-height: 1.4; margin-bottom: 1.75rem; }
+  .lede { font-size: 1.3rem; line-height: 1.4; margin-bottom: 1.25rem; }
+  .status {
+    padding-left: 0.9rem;
+    border-left: 2px solid var(--accent);
+    margin-bottom: 2rem;
+  }
   .elsewhere { list-style: none; padding: 0; margin: 0; }
   .elsewhere li {
     display: grid;

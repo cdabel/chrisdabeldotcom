@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Disclosure from '../components/Disclosure.astro';
 import { roles, education } from '../data/roles';
 
 const entries = (await getCollection('cv')).sort((a, b) => a.data.order - b.data.order);
@@ -35,6 +36,7 @@ for (const e of entries) byOrg.set(e.data.org, [...(byOrg.get(e.data.org) ?? [])
     built, how, and why it was hard.
   </p>
   <p class="jump"><a href="#timeline">Jump to the timeline</a></p>
+  <Disclosure />
   <script is:inline>
     // Runs before the list below is parsed, so a saved choice never flashes.
     try {

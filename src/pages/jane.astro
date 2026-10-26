@@ -5,7 +5,7 @@ import Disclosure from '../components/Disclosure.astro';
 
 <Base
   title="Jane.com | Chris Dabel"
-  description="The Airflow and Spark pipeline that built training data for a boutique marketplace's recommendation model from a billion clickstream rows, and the data-quality DAGs that guarded it."
+  description="The Airflow and Spark pipeline that fed a boutique marketplace's recommendation model billions of rows of shopper behavior, and the 25% email click-through lift that followed."
 >
   <h1>The pipeline behind a recommendation model</h1>
   <p class="lede">
@@ -18,12 +18,14 @@ import Disclosure from '../components/Disclosure.astro';
   <section aria-labelledby="problem">
     <h2 id="problem">The problem</h2>
     <p>
-      The marketplace's product recommendations were running on a model the
-      data science team was retraining on shopper behavior. Training it meant turning
-      raw clickstream into a feature set at a scale the existing SQL Server
-      Integration Services jobs could not reach, on a cadence that let the
-      team iterate, with predictions landing somewhere analysts could read
-      them the same hour.
+      The marketplace's product recommendations were running on simple
+      best-seller lists with no personalization. My job was to build the data
+      pipelines to feed the data scientist's machine learning models with
+      billions of rows of shopper behavior data: impressions, clicks,
+      checkouts, orders. Providing this training data meant turning that raw
+      clickstream into a feature set at a scale the existing AWS Redshift
+      cluster jobs could not reach, on a cadence that let the team iterate,
+      with predictions landing where the product read them the same hour.
     </p>
   </section>
 
@@ -52,8 +54,8 @@ import Disclosure from '../components/Disclosure.astro';
         <dt>Predictions to Redshift, hourly</dt>
         <dd>
           A Python DAG wrote the model's prediction outputs to Redshift
-          tables every hour, which gave analysts current data for trend
-          analysis without asking the data science team for an export.
+          tables every hour, where the product read them and analysts had
+          current data for trend analysis without asking for an export.
         </dd>
       </div>
       <div>
@@ -66,6 +68,16 @@ import Disclosure from '../components/Disclosure.astro';
         </dd>
       </div>
     </dl>
+  </section>
+
+  <section aria-labelledby="outcome">
+    <h2 id="outcome">The outcome</h2>
+    <p>
+      Recommendations from the model replaced the best-seller lists in the
+      marketplace's emails, and click-through rates on those emails rose 25%,
+      lifting company revenue. The revenue projection itself I no longer have
+      to hand, so the click-through figure is the one I will stand behind.
+    </p>
   </section>
 
   <section aria-labelledby="around">

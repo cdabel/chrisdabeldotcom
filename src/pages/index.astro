@@ -10,61 +10,67 @@ import Base from '../layouts/Base.astro';
     <img class="headshot" src="/headshot.webp" alt="Chris Dabel" width="600" height="600" loading="eager" decoding="async" />
     <h1>Chris Dabel</h1>
   </div>
+  <h2 class="role">Data engineer and architect.</h2>
   <p class="lede">
-    Data engineer and architect. I build the data layer AI runs on, and I
-    build with AI while I do it.
+    I build the data layer AI runs on, and I partner with AI while I do it.
   </p>
 
   <p>
-    Twelve years of data pipelines, warehouses, and infrastructure behind
-    production analytics and ML. Most recently the founding data engineer at a
-    fintech, where I owned the whole path solo: ingestion, a Snowflake medallion
-    architecture, orchestration in Airflow on AWS, and the governance that let
-    an LLM product see only what each tenant was entitled to. Along the way I
-    took the platform off two SaaS vendors, dbt Cloud to Airflow on MWAA
-    provisioned in Terraform and Fivetran to self-hosted Airbyte, without a
-    data outage. The same platform
-    fed the model: a labeled corpus in the millions of rows, a harness for
+    I've spent twelve years building data pipelines, warehouses, and the
+    infrastructure behind production analytics and ML. Most recently the
+    founding data engineer at a fintech startup, where I owned the whole
+    analytics path solo: ingestion, a Snowflake medallion architecture, star
+    schemas, orchestration and data ops in Airflow and Airbyte on AWS, and
+    the governance that let an LLM product see only what each client was
+    entitled to. Along the way I took the platform off two SaaS vendors, dbt
+    Cloud to Airflow on MWAA provisioned in Terraform, and Fivetran to
+    self-hosted Airbyte, without a data outage. The same platform also fed
+    the model: a labeled corpus in the millions of rows, a harness for
     scoring candidate models against each other, and per-LLM-call cost
-    analytics so nobody had to guess what the AI was spending.
+    analytics for the AI agents.
   </p>
 
   <p>
-    AI is a multiplier in my work, not a substitute for it. Agentic development
-    in Claude Code, custom skills and MCP servers, RAG on Snowflake Cortex. This
-    site was built that way and the source is public. Knowing where AI belongs
-    in a system, and where it does not, is most of the job now.
+    I use AI as a force multiplier: agentic development with Claude Code and
+    Cursor, custom skills and MCP servers, and RAG on Snowflake Cortex. I'm
+    experienced enough to know where AI belongs in a system and where it
+    doesn't. This site was built that way, and the
+    <a href="https://github.com/cdabel/chrisdabeldotcom">source</a> is public.
   </p>
 
   <p>
-    Governance is what makes the rest shippable. At the fintech that meant row
-    access policies over an entitlements table, masking on free text and
-    financial values, service accounts on the proper user type with rotated
-    keys, and SCIM work alongside the security team. None of it is exotic. All
-    of it is what an auditor asks about first, and it is what let an AI product
-    touch customer data at all.
+    Sound data governance is key. In regulated industries I've built
+    <em>the principle of least privilege</em>, tenant isolation enforced in
+    the database, and credential hygiene into the data platforms I've
+    delivered: row access policies over an entitlements table, masking on
+    free text and financial values, service accounts on the proper user type
+    with rotated keys, and SCIM access-provisioning work alongside the
+    security team. It's not glamorous, but it's the prerequisite before I let
+    an AI product's systems touch sensitive data at all.
   </p>
 
   <p>
     I do my best work at the edge of a problem nobody has mapped yet. My
-    ability to hyperfocus is the engine. Writing keeps the creative juices
-    flowing. The pen is my key to innovation. I inhabit the
-    ambiguity, find the structure inside it, cut out the fluff, and ship
-    something people can use.
+    ability to hyperfocus is the engine. I write and build apps to keep the
+    creative juices flowing. The pen is my key to innovation. I love to
+    inhabit ambiguity, materialize structure inside it, and cut out the fluff
+    to ship useful and innovative stuff.
   </p>
 
   <p>
-    Before data I was an analyst: a State Department internship in Kinshasa,
-    working in French, then a global news desk. Translating between worlds is
-    the oldest skill I have, and it is still what bridges the business question
-    and the right technical answer.
+    Before data, I was an analyst: a State Department internship in Kinshasa,
+    working in French, then running a news desk producing global daily news
+    summaries for mission-critical operations in government and defense.
+    Translating between worlds and empowering decision-making at scale are
+    the oldest skills I have. They are what bridge the business question to
+    the right technical answer.
   </p>
 
   <p>
-    I'm looking for my next opportunity: founding or staff-level data work,
-    high ambiguity, high autonomy, with leadership that values clear, competent
-    communication and architectural decision-making to shape a collaborative,
-    cross-functional team culture.
+    I'm looking for my next opportunity: founding or staff-level data work in
+    high-ambiguity, high-autonomy roles, side by side with leadership that
+    values clear, competent communication and architectural decision-making
+    to shape collaborative, cross-functional teams.
   </p>
 
   <section aria-labelledby="elsewhere">
@@ -115,10 +121,11 @@ import Base from '../layouts/Base.astro';
 </Base>
 
 <style>
-  .head { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.25rem; }
+  .head { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem; }
   .head h1 { margin: 0; }
   .headshot { width: 8.5rem; height: 8.5rem; border-radius: 12px; flex: none; }
   @media (max-width: 480px) { .headshot { width: 6rem; height: 6rem; border-radius: 10px; } .head { gap: 1rem; } }
+  .role { margin: 0 0 0.35rem; font-size: 1.35rem; font-weight: 500; }
   .lede { font-size: 1.3rem; line-height: 1.4; margin-bottom: 1.75rem; }
   .elsewhere { list-style: none; padding: 0; margin: 0; }
   .elsewhere li {

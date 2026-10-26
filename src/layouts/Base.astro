@@ -25,11 +25,35 @@ const preload = [youngSerif, plex400, plex500, plex600];
 interface Props {
   title: string;
   description?: string;
+  /** Emit the Person structured data. Home page only. */
+  person?: boolean;
 }
 const {
   title,
-  description = 'Founding data engineer and architect. I build the platform, wire AI into it, and scale it.',
+  description = 'Chris Dabel, founding data engineer and architect. Snowflake, dbt, Airflow, and AWS data platforms built solo, with the governance and evaluation layers AI products need.',
+  person = false,
 } = Astro.props;
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Chris Dabel',
+  jobTitle: 'Founding Data Engineer and Architect',
+  description: 'Data engineer and architect. Builds data platforms on Snowflake, dbt, Airflow, and AWS, with the governance and evaluation layers AI products need.',
+  url: 'https://chrisdabel.com/',
+  image: 'https://chrisdabel.com/headshot.webp',
+  email: 'mailto:cdabel@gmail.com',
+  sameAs: [
+    'https://www.linkedin.com/in/chrisdabel',
+    'https://github.com/cdabel',
+    'https://www.enternyxus.com/',
+    'https://critpages.com',
+  ],
+  knowsAbout: ['Data engineering', 'Data architecture', 'Snowflake', 'dbt', 'Apache Airflow', 'AWS', 'Terraform', 'Data governance', 'LLM evaluation'],
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'University of Utah' },
+    { '@type': 'CollegeOrUniversity', name: 'Brigham Young University' },
+  ],
+};
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/og.png', Astro.site);
 const ogTitle = title.replace(/ \| Chris Dabel$/, '');
@@ -49,7 +73,11 @@ const ogTitle = title.replace(/ \| Chris Dabel$/, '');
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonical} />
     <meta name="description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta name="author" content="Chris Dabel" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f6f8" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#15191f" />
+    <meta property="og:type" content={person ? 'profile' : 'website'} />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Chris Dabel" />
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={description} />
@@ -62,6 +90,7 @@ const ogTitle = title.replace(/ \| Chris Dabel$/, '');
     <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    {person && <script type="application/ld+json" set:html={JSON.stringify(personLd)} />}
     <script is:inline>
       try {
         const t = localStorage.getItem('theme');

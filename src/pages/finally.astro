@@ -28,8 +28,8 @@ const credits = [
       and nobody in the seat; the platform engineer who had stood up the
       replication left two months before I started. The hardest source was the
       card platform, which gives every customer their own Postgres schema, so
-      the replication layer fanned every table out across roughly 1,600 tenant
-      schemas of about 120 tables each.
+      the replication layer was fanning every table out across roughly 1,600
+      tenant schemas of about 120 tables each.
     </p>
   </section>
 
@@ -233,10 +233,10 @@ const credits = [
       <div>
         <dt>Build order is a dependency</dt>
         <dd>
-          The delinquency model was one day short and the SQL was fine. Its
-          date spine filtered on a pre-computed "is past" flag from a
-          dimension that rebuilt after it in the schedule, so yesterday was
-          never past. The fix was a run-time cutoff. The lesson became a
+          The delinquency model was coming up one day short and the SQL was
+          fine. Its date spine was filtering on a pre-computed "is past" flag
+          from a dimension that rebuilt after it in the schedule, so yesterday
+          was never past. The fix was a run-time cutoff. The lesson became a
           dependency-review checklist the repo now reviews every model change
           against: refresh cadence, build order, downstream blast radius, and
           never a pre-computed relative-date flag as a spine filter.
